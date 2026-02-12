@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Портфолио Ильи Блошенко
 
-## Getting Started
+Статический сайт-портфолио на базе Next.js, автоматически генерируемый из Notion страницы.
 
-First, run the development server:
+## 🚀 Быстрый старт
+
+### 1. Установка зависимостей
+
+```bash
+npm install
+```
+
+### 2. Локальная разработка
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Сборка для продакшн
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Статические файлы будут созданы в папке `out/`.
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Как работает проект
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Архитектура
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Notion API** — при сборке проект подключается к Notion через unofficial API (`notion-client`)
+2. **Локальное скачивание изображений** — все изображения из Notion S3 скачиваются в `public/notion-images/` при билде
+3. **Статическая генерация** — Next.js создает полностью статический сайт (HTML + CSS + JS)
+4. **GitHub Actions** — автоматически деплоит на GitHub Pages при push в `main`
 
-## Deploy on Vercel
+### Ключевые файлы
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **`site.config.ts`** — ID Notion страницы, название сайта, описание
+- **`src/lib/notion.ts`** — клиент Notion API + скачивание изображений
+- **`src/components/NotionPage.tsx`** — компонент рендеринга Notion страницы
+- **`src/app/page.tsx`** — главная страница сайта
+- **`.github/workflows/deploy.yml`** — CI/CD для GitHub Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔄 Обновление контента
+
+Когда обновляешь контент в Notion:
+
+1. **Автоматический деплой** — просто push в `main`:
+   ```bash
+   git add .
+   git commit -m "Update content"
+   git push
+   ```
+
+2. **Ручной деплой** без изменений кода:
+   - Зайди в GitHub → Actions
+   - Выбери "Deploy to GitHub Pages"
+   - Нажми "Run workflow"
+
+## ⚙️ Настройка GitHub Pages
+
+1. Создай репозиторий на GitHub (например, `portfolio`)
+2. Зайди в Settings → Pages
+3. Source: выбери **"GitHub Actions"**
+4. Push код в `main` — деплой запустится автоматически
+
+### Важно про basePath
+
+Если репозиторий называется **НЕ** `username.github.io`:
+
+1. Открой `next.config.ts`
+2. Раскомментируй строку:
+   ```typescript
+   basePath: "/portfolio",  // замени "portfolio" на имя твоего репозитория
+   ```
+3. Сайт будет доступен по `username.github.io/portfolio`
+
+Если репозиторий называется `username.github.io` — `basePath` не нужен.
+
+## 🎨 Кастомизация
+
+### Изменить Notion страницу
+
+Отредактируй `site.config.ts`:
+
+```typescript
+export const siteConfig = {
+  rootNotionPageId: 'твой-page-id',  // ID новой страницы
+  name: 'Новое название',
+  description: 'Новое описание',
+};
+```
+
+### Адаптивные стили
+
+Отредактируй `src/app/globals.css` — там настройки для мобильных экранов.
+
+## 🛠️ Технологии
+
+- **Next.js 16** — App Router, Static Export
+- **react-notion-x** — рендеринг Notion блоков
+- **notion-client** — unofficial Notion API
+- **GitHub Pages** — хостинг (бесплатно, работает в РФ)
+- **GitHub Actions** — CI/CD
+
+## 📝 Лицензия
+
+MIT
