@@ -41,12 +41,24 @@ body {
   border-radius: 16px !important;
 }
 
-/* Center captions under image blocks. */
-.notion-asset-wrapper + .notion-text {
+/* Center only selected captions from portfolio screenshots. */
+.notion-text.notion-block-305ca4341bfb80409185fbe5134701ec,
+.notion-text.notion-block-305ca4341bfb8072a772e6dd7ebac92e,
+.notion-text.notion-block-305ca4341bfb802aa95ce98de43842e5,
+.notion-text.notion-block-305ca4341bfb807c981ef1b65e5b647a,
+.notion-text.notion-block-305ca4341bfb80158a26de2d6078c08f,
+.notion-text.notion-block-305ca4341bfb80b7bcdbd3ecf1281989,
+.notion-text.notion-block-305ca4341bfb807cae60e5eae195e5b1 {
   text-align: center !important;
 }
 
-.notion-asset-wrapper + .notion-text .notion-gray {
+.notion-text.notion-block-305ca4341bfb80409185fbe5134701ec .notion-gray,
+.notion-text.notion-block-305ca4341bfb8072a772e6dd7ebac92e .notion-gray,
+.notion-text.notion-block-305ca4341bfb802aa95ce98de43842e5 .notion-gray,
+.notion-text.notion-block-305ca4341bfb807c981ef1b65e5b647a .notion-gray,
+.notion-text.notion-block-305ca4341bfb80158a26de2d6078c08f .notion-gray,
+.notion-text.notion-block-305ca4341bfb80b7bcdbd3ecf1281989 .notion-gray,
+.notion-text.notion-block-305ca4341bfb807cae60e5eae195e5b1 .notion-gray {
   display: block;
   text-align: center !important;
 }
