@@ -126,6 +126,20 @@ body {
     line-height: 1.4;
   }
 
+  /* Make this specific screenshot as wide as neighboring mobile screenshots. */
+  .notion-asset-wrapper.notion-block-305ca4341bfb8092af8fe786f7157c53 {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .notion-asset-wrapper.notion-block-305ca4341bfb8092af8fe786f7157c53 > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
   /* Изображения — полная ширина */
   .notion-asset-wrapper {
     max-width: 100% !important;
