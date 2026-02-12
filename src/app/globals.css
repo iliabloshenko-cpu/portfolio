@@ -63,6 +63,11 @@ body {
   text-align: center !important;
 }
 
+/* This caption has trailing spaces in Notion content; collapse them to keep true centering. */
+.notion-text.notion-block-305ca4341bfb807c981ef1b65e5b647a .notion-gray {
+  white-space: normal !important;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
