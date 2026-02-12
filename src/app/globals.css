@@ -73,6 +73,11 @@ body {
   white-space: normal !important;
 }
 
+/* Add breathing room after "Коротко"-style gray callouts before the next text block. */
+.notion-callout.notion-gray_background_co + .notion-text {
+  margin-top: 24px !important;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
@@ -156,6 +161,12 @@ body {
 
   /* Изображения — полная ширина */
   .notion-asset-wrapper {
+    max-width: 100% !important;
+  }
+
+  /* Normalize asset inner container widths (Notion may inject fixed widths like 336px). */
+  .notion-asset-wrapper > div {
+    width: 100% !important;
     max-width: 100% !important;
   }
 
