@@ -177,6 +177,17 @@ body {
     margin-top: 16px !important;
   }
 
+  /* Remove extra technical blank blocks in pet flow section on mobile. */
+  .notion-blank.notion-block-305ca4341bfb808e8610d4773565487f,
+  .notion-blank.notion-block-305ca4341bfb805aae2ac514ddecb6e2,
+  .notion-blank.notion-block-305ca4341bfb80cebd84ee79ae73986f {
+    display: none !important;
+  }
+
+  .notion-text.notion-block-305ca4341bfb80d287d2c6e2bf58349c + .notion-text.notion-block-305ca4341bfb801f9086c2a55312f18f {
+    margin-top: 16px !important;
+  }
+
   /* Изображения — полная ширина */
   .notion-asset-wrapper {
     max-width: 100% !important;
