@@ -101,6 +101,31 @@ body {
     margin-top: 24px !important;
   }
 
+  /* Split merged caption into two per-image captions for mobile only. */
+  .notion-text.notion-block-305ca4341bfb802aa95ce98de43842e5 {
+    display: none !important;
+  }
+
+  .notion-asset-wrapper.notion-block-305ca4341bfb8086ba90f62d9c33277c::after {
+    content: "Главный экран подписок";
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--notion-gray);
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .notion-asset-wrapper.notion-block-305ca4341bfb80a4b6e4e2012917cf88::after {
+    content: "Управление подпиской";
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--notion-gray);
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
   /* Изображения — полная ширина */
   .notion-asset-wrapper {
     max-width: 100% !important;
