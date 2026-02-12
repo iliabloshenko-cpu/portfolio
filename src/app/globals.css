@@ -41,6 +41,11 @@ body {
   border-radius: 16px !important;
 }
 
+/* Match Hero callout yellow closer to Notion screenshot. */
+.notion-callout.notion-block-93b86d584aea421ca077f76428e4cb23 {
+  background: #f6f1dc !important;
+}
+
 /* Center only selected captions from portfolio screenshots. */
 .notion-text.notion-block-305ca4341bfb80409185fbe5134701ec,
 .notion-text.notion-block-305ca4341bfb8072a772e6dd7ebac92e,
