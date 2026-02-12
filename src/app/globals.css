@@ -23,6 +23,17 @@ body {
   padding: 0 16px;
 }
 
+/* Align the hero avatar with the title/content left edge. */
+.notion-page-icon-hero {
+  left: 0 !important;
+  justify-content: flex-start !important;
+}
+
+.notion-page-icon-hero.notion-page-icon-image,
+.notion-page-icon-hero.notion-page-icon-span {
+  margin-left: 0 !important;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
