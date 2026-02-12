@@ -41,6 +41,11 @@ body {
   border-radius: 16px !important;
 }
 
+/* Center gray caption text when it follows an image block. */
+.notion-asset-wrapper + .notion-text.notion-gray {
+  text-align: center !important;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
