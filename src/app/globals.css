@@ -164,6 +164,15 @@ body {
     max-width: 100% !important;
   }
 
+  /* Case-specific spacing in "Вариант B" section. */
+  .notion-row.notion-block-305ca4341bfb80b3a6d5f97f8813ac3e {
+    margin-bottom: 24px !important;
+  }
+
+  .notion-text.notion-block-305ca4341bfb80479a30ebc67cfc83e5 {
+    margin-bottom: 16px !important;
+  }
+
   /* Изображения — полная ширина */
   .notion-asset-wrapper {
     max-width: 100% !important;
