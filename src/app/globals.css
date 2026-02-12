@@ -78,6 +78,11 @@ body {
   margin-top: 24px !important;
 }
 
+/* Guaranteed spacing under gray "Коротко"-style callouts regardless of next block type. */
+.notion-callout.notion-gray_background_co {
+  margin-bottom: 24px !important;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
