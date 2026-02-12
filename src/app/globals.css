@@ -25,7 +25,7 @@ body {
 
 /* Align the hero avatar with the title/content left edge. */
 .notion-page-icon-hero {
-  left: 8px !important;
+  left: 16px !important;
   justify-content: flex-start !important;
 }
 
