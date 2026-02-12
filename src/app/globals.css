@@ -34,6 +34,13 @@ body {
   margin-left: 0 !important;
 }
 
+/* Callouts: remove border and use 16px radius (incl. Hero "Senior Product Designer"). */
+.notion-callout {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 16px !important;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
