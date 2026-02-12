@@ -140,6 +140,20 @@ body {
     max-width: 100% !important;
   }
 
+  /* Keep paired pet-club screenshots full width after column collapse. */
+  .notion-row.notion-block-305ca4341bfb8052bed6cecc16294811 .notion-asset-wrapper,
+  .notion-row.notion-block-305ca4341bfb80a98b36ecea2a6d6876 .notion-asset-wrapper {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .notion-row.notion-block-305ca4341bfb8052bed6cecc16294811 .notion-asset-wrapper > div,
+  .notion-row.notion-block-305ca4341bfb80a98b36ecea2a6d6876 .notion-asset-wrapper > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
   /* Изображения — полная ширина */
   .notion-asset-wrapper {
     max-width: 100% !important;
