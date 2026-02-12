@@ -173,6 +173,10 @@ body {
     margin-bottom: 16px !important;
   }
 
+  .notion-text.notion-block-305ca4341bfb808eb21ff6eb7c1527b4 + .notion-row.notion-block-305ca4341bfb802fba76c0f124cd55b0 {
+    margin-top: 16px !important;
+  }
+
   /* Изображения — полная ширина */
   .notion-asset-wrapper {
     max-width: 100% !important;
