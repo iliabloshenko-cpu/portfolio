@@ -43,7 +43,7 @@ body {
 
 /* Match Hero callout yellow closer to Notion screenshot. */
 .notion-callout.notion-block-93b86d584aea421ca077f76428e4cb23 {
-  background: #f6f1dc !important;
+  background-color: #ece4c6 !important;
 }
 
 /* Center only selected captions from portfolio screenshots. */
