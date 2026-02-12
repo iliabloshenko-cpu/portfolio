@@ -14,6 +14,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 import dynamic from 'next/dynamic';
 
 const LOCAL_IMAGE_ORIGIN = 'https://notion-local.host';
+const PUBLIC_BASE_PATH = (process.env.NEXT_PUBLIC_BASE_PATH || '').replace(/\/$/, '');
 
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then((m) => m.Code)
@@ -61,7 +62,8 @@ export default function NotionPage({ recordMap }: NotionPageProps) {
           return url;
         }
         if (url.startsWith(LOCAL_IMAGE_ORIGIN)) {
-          return url.replace(LOCAL_IMAGE_ORIGIN, '');
+          const parsed = new URL(url);
+          return `${PUBLIC_BASE_PATH}${parsed.pathname}${parsed.search}`;
         }
         return url;
       }}
