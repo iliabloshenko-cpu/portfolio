@@ -83,7 +83,7 @@ body {
   /* Колонки — выстраиваем в одну колонку */
   .notion-row {
     flex-direction: column !important;
-    row-gap: 16px !important;
+    row-gap: 24px !important;
   }
 
   .notion-column {
@@ -98,7 +98,7 @@ body {
 
   /* Доп. воздух между подряд идущими скриншотами. */
   .notion-asset-wrapper + .notion-asset-wrapper {
-    margin-top: 16px !important;
+    margin-top: 24px !important;
   }
 
   /* Изображения — полная ширина */
