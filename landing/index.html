@@ -312,7 +312,7 @@
       }
 
       .hero-kicker {
-        display: inline-flex;
+        display: none;
         gap: 0.65rem;
         flex-wrap: wrap;
         margin-bottom: 1rem;
@@ -903,6 +903,18 @@
         transform: translateY(0);
       }
 
+      @media (max-width: 719px) {
+        .brand-meta {
+          display: none;
+        }
+
+        .hero-kicker {
+          display: inline-flex;
+          margin-top: 0;
+          margin-bottom: 1.25rem;
+        }
+      }
+
       @media (min-width: 720px) {
         .container {
           width: min(calc(100% - 3rem), var(--max-width));
@@ -1029,6 +1041,13 @@
         <div class="hero-stage">
           <div class="hero-content reveal">
             <h1 class="hero-title">Поставь технику<br />в единоборствах<br />с нуля за месяц</h1>
+            <div class="hero-kicker" aria-label="Направления клуба">
+              <span class="tag">Тула</span>
+              <span class="tag">Для детей и взрослых</span>
+              <span class="tag">Бокс</span>
+              <span class="tag">ММА</span>
+              <span class="tag">Рукопашный бой</span>
+            </div>
             <p class="hero-copy">
               В нашем бойцовском клубе для детей и взрослых
             </p>
