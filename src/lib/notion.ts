@@ -1,4 +1,5 @@
 import { NotionAPI } from 'notion-client';
+import { getPageContentBlockIds } from 'notion-utils';
 import { ExtendedRecordMap } from 'notion-types';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -6,6 +7,7 @@ import path from 'node:path';
 
 const notion = new NotionAPI();
 const LOCAL_IMAGE_ORIGIN = 'https://notion-local.host';
+const BLOCKS_FETCH_CHUNK_SIZE = 100;
 
 function getOutputDir(): string {
   return path.join(process.cwd(), 'public', 'notion-images');
@@ -43,14 +45,95 @@ function unwrapValueEntries<T extends Record<string, unknown>>(collection: T | u
   return normalized as T;
 }
 
-function normalizeRecordMap(recordMap: ExtendedRecordMap): ExtendedRecordMap {
+function normalizeRecordMap(recordMap: Partial<ExtendedRecordMap>): ExtendedRecordMap {
   return {
     ...recordMap,
     block: unwrapValueEntries(recordMap.block),
     collection: unwrapValueEntries(recordMap.collection),
     collection_view: unwrapValueEntries(recordMap.collection_view),
     notion_user: unwrapValueEntries(recordMap.notion_user),
+    collection_query: recordMap.collection_query ?? {},
+    signed_urls: recordMap.signed_urls ?? {},
   };
+}
+
+function mergeRecordMapBlocks(
+  recordMap: ExtendedRecordMap,
+  incoming: ExtendedRecordMap
+): ExtendedRecordMap {
+  return {
+    ...recordMap,
+    block: {
+      ...(recordMap.block ?? {}),
+      ...(incoming.block ?? {}),
+    },
+    collection: {
+      ...(recordMap.collection ?? {}),
+      ...(incoming.collection ?? {}),
+    },
+    collection_view: {
+      ...(recordMap.collection_view ?? {}),
+      ...(incoming.collection_view ?? {}),
+    },
+    notion_user: {
+      ...(recordMap.notion_user ?? {}),
+      ...(incoming.notion_user ?? {}),
+    },
+  };
+}
+
+async function hydrateMissingBlocks(recordMap: ExtendedRecordMap): Promise<ExtendedRecordMap> {
+  let hydrated = recordMap;
+
+  while (true) {
+    const missingBlockIds = getPageContentBlockIds(hydrated).filter((id) => !hydrated.block?.[id]);
+    if (!missingBlockIds.length) {
+      return hydrated;
+    }
+
+    let loadedAny = false;
+
+    for (let i = 0; i < missingBlockIds.length; i += BLOCKS_FETCH_CHUNK_SIZE) {
+      const chunk = missingBlockIds.slice(i, i + BLOCKS_FETCH_CHUNK_SIZE);
+      const fetchedResponse = await notion.getBlocks(chunk);
+      const fetched = normalizeRecordMap(
+        'recordMap' in fetchedResponse ? fetchedResponse.recordMap : fetchedResponse
+      );
+      const fetchedBlockIds = Object.keys(fetched.block ?? {});
+
+      if (!fetchedBlockIds.length) {
+        continue;
+      }
+
+      loadedAny = true;
+      hydrated = mergeRecordMapBlocks(hydrated, fetched);
+    }
+
+    if (!loadedAny) {
+      console.warn(
+        `[notion] Unable to resolve ${missingBlockIds.length} missing blocks: ${missingBlockIds.join(', ')}`
+      );
+      return hydrated;
+    }
+  }
+}
+
+async function getNormalizedPage(pageId: string): Promise<ExtendedRecordMap> {
+  const recordMap = await hydrateMissingBlocks(
+    normalizeRecordMap(
+      await notion.getPage(pageId, {
+        fetchMissingBlocks: false,
+        signFileUrls: false,
+      })
+    )
+  );
+
+  await notion.addSignedUrls({
+    recordMap,
+    contentBlockIds: getPageContentBlockIds(recordMap),
+  });
+
+  return recordMap;
 }
 
 function ensureOutputDir(outputDir: string): void {
@@ -164,7 +247,7 @@ async function replaceNotionImagesWithLocal(recordMap: ExtendedRecordMap): Promi
 }
 
 export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
-  const recordMap = normalizeRecordMap(await notion.getPage(pageId));
+  const recordMap = await getNormalizedPage(pageId);
 
   if (process.env.NODE_ENV === 'production' || process.env.DOWNLOAD_IMAGES === 'true') {
     return replaceNotionImagesWithLocal(recordMap);

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { defaultMapImageUrl } from 'notion-utils';
 import { NotionRenderer } from 'react-notion-x';
 import { ExtendedRecordMap } from 'notion-types';
 import { useEffect } from 'react';
@@ -45,6 +46,11 @@ export default function NotionPage({ recordMap }: NotionPageProps) {
     }
   }, [recordMap]);
 
+  const mapLocalImageUrl = (url: string) => {
+    const parsed = new URL(url);
+    return `${PUBLIC_BASE_PATH}${parsed.pathname}${parsed.search}`;
+  };
+
   return (
     <NotionRenderer
       recordMap={recordMap}
@@ -58,15 +64,26 @@ export default function NotionPage({ recordMap }: NotionPageProps) {
       }}
       // Портфолио одно-страничное: любые Notion page-ссылки сводим к якорям блоков.
       mapPageUrl={() => ''}
-      mapImageUrl={(url) => {
-        if (!url) {
-          return url;
+      mapImageUrl={(url, block) => {
+        if (typeof url === 'string' && url.startsWith(LOCAL_IMAGE_ORIGIN)) {
+          return mapLocalImageUrl(url);
         }
-        if (url.startsWith(LOCAL_IMAGE_ORIGIN)) {
-          const parsed = new URL(url);
-          return `${PUBLIC_BASE_PATH}${parsed.pathname}${parsed.search}`;
+
+        const signedUrl =
+          typeof url === 'string' && url.startsWith('attachment:')
+            ? recordMap.signed_urls?.[block.id]
+            : undefined;
+        const mappedUrl = signedUrl ?? defaultMapImageUrl(url, block) ?? url;
+
+        if (!mappedUrl) {
+          return mappedUrl;
         }
-        return url;
+
+        if (mappedUrl.startsWith(LOCAL_IMAGE_ORIGIN)) {
+          return mapLocalImageUrl(mappedUrl);
+        }
+
+        return mappedUrl;
       }}
     />
   );
