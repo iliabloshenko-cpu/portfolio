@@ -65,6 +65,13 @@ GitHub Actions автоматически запустится при push в `m
    - Если репозиторий `portfolio`: `https://username.github.io/portfolio/`
    - Если репозиторий `username.github.io`: `https://username.github.io/`
 
+### Лендинг как отдельная страница
+
+- Папка `landing/` автоматически копируется в `public/landing/` при `npm run dev` и `npm run build`
+- После деплоя лендинг будет доступен по адресу:
+  - `https://username.github.io/portfolio/landing/`
+  - или `https://username.github.io/landing/` для репозитория `username.github.io`
+
 ## 5. Обновление контента из Notion
 
 ### Автоматическое обновление при изменении кода:
