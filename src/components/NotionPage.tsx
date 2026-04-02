@@ -50,6 +50,7 @@ export default function NotionPage({ recordMap }: NotionPageProps) {
       recordMap={recordMap}
       fullPage={true}
       darkMode={false}
+      showTableOfContents={false}
       components={{
         Code,
         Collection,

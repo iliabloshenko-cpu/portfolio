@@ -11,6 +11,48 @@ function getOutputDir(): string {
   return path.join(process.cwd(), 'public', 'notion-images');
 }
 
+function unwrapValueEntries<T extends Record<string, unknown>>(collection: T | undefined): T {
+  if (!collection) return {} as T;
+
+  const normalized = Object.fromEntries(
+    Object.entries(collection).map(([key, entry]) => {
+      if (!entry || typeof entry !== 'object') {
+        return [key, entry];
+      }
+
+      const outer = entry as Record<string, unknown>;
+      const nested = outer.value;
+
+      if (nested && typeof nested === 'object' && 'value' in (nested as Record<string, unknown>)) {
+        const nestedRecord = nested as Record<string, unknown>;
+
+        return [
+          key,
+          {
+            ...outer,
+            ...(typeof nestedRecord.role === 'string' ? { role: nestedRecord.role } : {}),
+            value: nestedRecord.value,
+          },
+        ];
+      }
+
+      return [key, entry];
+    })
+  );
+
+  return normalized as T;
+}
+
+function normalizeRecordMap(recordMap: ExtendedRecordMap): ExtendedRecordMap {
+  return {
+    ...recordMap,
+    block: unwrapValueEntries(recordMap.block),
+    collection: unwrapValueEntries(recordMap.collection),
+    collection_view: unwrapValueEntries(recordMap.collection_view),
+    notion_user: unwrapValueEntries(recordMap.notion_user),
+  };
+}
+
 function ensureOutputDir(outputDir: string): void {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
@@ -122,7 +164,7 @@ async function replaceNotionImagesWithLocal(recordMap: ExtendedRecordMap): Promi
 }
 
 export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
-  const recordMap = await notion.getPage(pageId);
+  const recordMap = normalizeRecordMap(await notion.getPage(pageId));
 
   if (process.env.NODE_ENV === 'production' || process.env.DOWNLOAD_IMAGES === 'true') {
     return replaceNotionImagesWithLocal(recordMap);

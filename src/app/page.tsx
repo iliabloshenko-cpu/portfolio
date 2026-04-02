@@ -1,5 +1,5 @@
 import { getPage } from '@/lib/notion';
-import NotionPageShell from '@/components/NotionPageShell';
+import NotionPage from '@/components/NotionPage';
 import { siteConfig } from '../../site.config';
 
 export default async function Home() {
@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main>
-      <NotionPageShell recordMap={recordMap} />
+      <NotionPage recordMap={recordMap} />
     </main>
   );
 }
