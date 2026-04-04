@@ -92,6 +92,15 @@ body {
   display: none !important;
 }
 
+/* Hide the same legacy links at the bottom of the main portfolio page. */
+.notion-blank.notion-block-304ca4341bfb8070bb76ee60c9ba0895,
+.notion-blank.notion-block-304ca4341bfb80f1a8f8d55da0165d90,
+.notion-blank.notion-block-304ca4341bfb800b852dc35575651e3d,
+.notion-page-link.notion-block-337ca4341bfb815d92afebbfb9b79c26,
+.notion-page-link.notion-block-337ca4341bfb81669a11e5508c2c0fad {
+  display: none !important;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
