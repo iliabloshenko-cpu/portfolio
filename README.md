@@ -81,17 +81,30 @@ npm run build
 
 ## 🎨 Кастомизация
 
-### Изменить Notion страницу
+### Изменить Notion страницы
 
 Отредактируй `site.config.ts`:
 
 ```typescript
-export const siteConfig = {
-  rootNotionPageId: 'твой-page-id',  // ID новой страницы
-  name: 'Новое название',
-  description: 'Новое описание',
+export const portfolioPages = {
+  main: {
+    path: '/',
+    rootNotionPageId: 'page-id-для-основного-портфолио',
+    name: 'Основное портфолио',
+    description: 'Описание основного портфолио',
+    author: 'Илья Блошенко',
+  },
+  portfolioV2: {
+    path: '/portfolio-v2',
+    rootNotionPageId: 'page-id-для-второго-варианта',
+    name: 'Portfolio v2',
+    description: 'Описание второго варианта',
+    author: 'Илья Блошенко',
+  },
 };
 ```
+
+Основное портфолио остаётся на `/`, второй вариант доступен на `/portfolio-v2/`.
 
 ### Адаптивные стили
 

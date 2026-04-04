@@ -64,6 +64,9 @@ GitHub Actions автоматически запустится при push в `m
 4. Сайт будет доступен по адресу:
    - Если репозиторий `portfolio`: `https://username.github.io/portfolio/`
    - Если репозиторий `username.github.io`: `https://username.github.io/`
+5. Второй вариант портфолио будет доступен по адресу:
+   - `https://username.github.io/portfolio/portfolio-v2/`
+   - или `https://username.github.io/portfolio-v2/` для репозитория `username.github.io`
 
 ### Лендинг как отдельная страница
 
@@ -71,6 +74,13 @@ GitHub Actions автоматически запустится при push в `m
 - После деплоя лендинг будет доступен по адресу:
   - `https://username.github.io/portfolio/landing/`
   - или `https://username.github.io/landing/` для репозитория `username.github.io`
+
+### Второй вариант портфолио как отдельная страница
+
+- Новый маршрут рендерится из второй опубликованной Notion-страницы
+- После деплоя он будет доступен по адресу:
+  - `https://username.github.io/portfolio/portfolio-v2/`
+  - или `https://username.github.io/portfolio-v2/` для репозитория `username.github.io`
 
 ## 5. Обновление контента из Notion
 
