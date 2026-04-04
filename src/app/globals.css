@@ -83,6 +83,15 @@ body {
   margin-bottom: 24px !important;
 }
 
+/* Hide legacy page links left at the bottom of portfolio v2. */
+.notion-blank.notion-block-338ca4341bfb816a98f1e0104868a5e9,
+.notion-blank.notion-block-338ca4341bfb81149dc3ed79aa9a0f31,
+.notion-blank.notion-block-338ca4341bfb8154aa8ff8f1925f70cf,
+.notion-page-link.notion-block-338ca4341bfb81a3a35bf592629399af,
+.notion-page-link.notion-block-338ca4341bfb8188b189d6696f30703b {
+  display: none !important;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
