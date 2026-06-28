@@ -4,6 +4,7 @@ import { ExtendedRecordMap } from 'notion-types';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { reorderMainPortfolioCases } from './reorderPortfolioCases';
 
 const notion = new NotionAPI();
 const LOCAL_IMAGE_ORIGIN = 'https://notion-local.host';
@@ -247,7 +248,10 @@ async function replaceNotionImagesWithLocal(recordMap: ExtendedRecordMap): Promi
 }
 
 export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
-  const recordMap = await getNormalizedPage(pageId);
+  const recordMap = reorderMainPortfolioCases(
+    await getNormalizedPage(pageId),
+    pageId
+  );
 
   if (process.env.NODE_ENV === 'production' || process.env.DOWNLOAD_IMAGES === 'true') {
     return replaceNotionImagesWithLocal(recordMap);
