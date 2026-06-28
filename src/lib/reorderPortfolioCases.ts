@@ -31,16 +31,24 @@ function getBlock(recordMap: ExtendedRecordMap, blockId: string) {
   return matchingId ? recordMap.block[matchingId]?.value : undefined;
 }
 
+function formatCaseNumber(title: string, caseNumber: number): string {
+  const renumberedTitle = title.replace(
+    CASE_NUMBER_PATTERN,
+    `$1${caseNumber}$2`
+  );
+
+  return caseNumber === 1
+    ? renumberedTitle.replace(/^(\s*1\s+)Кейс/u, '$1кейс')
+    : renumberedTitle;
+}
+
 function renumberCaseTitle(block: ReturnType<typeof getBlock>, caseNumber: number): void {
   const title = block?.properties?.title;
   if (!Array.isArray(title)) return;
 
   for (const decoration of title) {
     if (typeof decoration?.[0] !== 'string') continue;
-    decoration[0] = decoration[0].replace(
-      CASE_NUMBER_PATTERN,
-      `$1${caseNumber}$2`
-    );
+    decoration[0] = formatCaseNumber(decoration[0], caseNumber);
   }
 }
 
@@ -59,10 +67,7 @@ function reorderCaseNavigation(recordMap: ExtendedRecordMap): void {
     );
     if (!caseDecoration || typeof caseDecoration[0] !== 'string') return undefined;
 
-    caseDecoration[0] = caseDecoration[0].replace(
-      CASE_NUMBER_PATTERN,
-      `$1${newIndex + 1}$2`
-    );
+    caseDecoration[0] = formatCaseNumber(caseDecoration[0], newIndex + 1);
 
     return newIndex === 0 ? [['      '], caseDecoration] : [caseDecoration];
   });
