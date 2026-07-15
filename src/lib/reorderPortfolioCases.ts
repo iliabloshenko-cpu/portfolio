@@ -21,8 +21,7 @@ const CASE_NUMBER_PATTERN = /^(\s*)\d+(\s+[Кк]ейс)(?=[\s.])/u;
 const REGISTRATION_RESULT_BLOCK_ID = '305ca434-1bfb-80b0-b6eb-ca17ecf8744f';
 const REGISTRATION_RESULT_OLD_SENTENCE =
   'Конверсия на этапе дорегистрации выросла на 70%.';
-const REGISTRATION_RESULT_NEW_SENTENCE =
-  'Конверсия на этапе дорегистрации выросла на 70% относительно контрольной группы.';
+const REGISTRATION_RESULT_QUALIFIER = ' относительно контрольной группы';
 
 function compactId(id: string): string {
   return id.replaceAll('-', '');
@@ -91,12 +90,32 @@ function updateRegistrationResult(recordMap: ExtendedRecordMap): void {
   const title = resultBlock?.properties?.title;
   if (!Array.isArray(title)) return;
 
+  const fullTitle = title
+    .map((decoration) =>
+      typeof decoration?.[0] === 'string' ? decoration[0] : ''
+    )
+    .join('');
+  const sentenceStart = fullTitle.indexOf(REGISTRATION_RESULT_OLD_SENTENCE);
+  if (sentenceStart === -1) return;
+
+  const insertionOffset =
+    sentenceStart + REGISTRATION_RESULT_OLD_SENTENCE.length - 1;
+  let currentOffset = 0;
+
   for (const decoration of title) {
     if (typeof decoration?.[0] !== 'string') continue;
-    decoration[0] = decoration[0].replace(
-      REGISTRATION_RESULT_OLD_SENTENCE,
-      REGISTRATION_RESULT_NEW_SENTENCE
-    );
+
+    const decorationEnd = currentOffset + decoration[0].length;
+    if (insertionOffset >= currentOffset && insertionOffset < decorationEnd) {
+      const localOffset = insertionOffset - currentOffset;
+      decoration[0] =
+        decoration[0].slice(0, localOffset) +
+        REGISTRATION_RESULT_QUALIFIER +
+        decoration[0].slice(localOffset);
+      return;
+    }
+
+    currentOffset = decorationEnd;
   }
 }
 
