@@ -10,7 +10,6 @@ if (projectToken) {
     api_host: apiHost,
     defaults: "2026-05-30",
     person_profiles: "identified_only",
-    disable_session_recording: true,
     disable_surveys: true,
   });
 }
