@@ -26,6 +26,33 @@ npm run build
 
 Статические файлы будут созданы в папке `out/`.
 
+## 📊 Аналитика
+
+Сайт автоматически отправляет в PostHog просмотры страниц, уходы со страниц и
+автособираемые взаимодействия (например, клики). Запись сессий и опросы в
+PostHog отключены. Яндекс Метрика собирает посещения, внешние переходы, карту
+кликов и записи Вебвизора.
+
+Для локального запуска:
+
+```bash
+cp .env.example .env.local
+```
+
+Затем укажи в `.env.local` публичный project token из **PostHog → Project
+settings** и хост региона проекта:
+
+```dotenv
+NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN=phc_...
+NEXT_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
+NEXT_PUBLIC_YANDEX_METRICA_ID=123456789
+```
+
+Для деплоя через GitHub Pages создай три одноимённые repository variables в
+**Settings → Secrets and variables → Actions → Variables**. Для US-региона
+PostHog используй `https://us.i.posthog.com`. Если соответствующий ID или токен
+не задан, сайт продолжит работать без этой системы аналитики.
+
 ## 📦 Как работает проект
 
 ### Архитектура
