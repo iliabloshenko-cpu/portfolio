@@ -24,7 +24,7 @@ const BEHANCE_BOOKMARK_IDS = [
 
 const NEW_CASE_ORDER = [3, 1, 0, 2] as const;
 const CASE_NUMBER_PATTERN = /^(\s*)\d+(\s+[Кк]ейс)(?=[\s.])/u;
-const LOCAL_BEHANCE_ICON = 'https://notion-local.host/behance.svg';
+const LOCAL_BEHANCE_ICON = 'https://notion-local.host/behance.png';
 const REGISTRATION_RESULT_BLOCK_ID = '305ca434-1bfb-80b0-b6eb-ca17ecf8744f';
 const REGISTRATION_RESULT_OLD_SENTENCE =
   'Конверсия на этапе дорегистрации выросла на 70%.';
