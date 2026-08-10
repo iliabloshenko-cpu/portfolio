@@ -16,8 +16,15 @@ const CASE_NAVIGATION_IDS = [
   '305ca434-1bfb-8071-b972-cf5853bbc636',
 ] as const;
 
+const BEHANCE_BOOKMARK_IDS = [
+  '305ca434-1bfb-806c-b79a-dd07f37d9d84',
+  '305ca434-1bfb-80f4-9058-c026c6118180',
+  '305ca434-1bfb-8010-86dd-f24a4fce1fb1',
+] as const;
+
 const NEW_CASE_ORDER = [3, 1, 0, 2] as const;
 const CASE_NUMBER_PATTERN = /^(\s*)\d+(\s+[Кк]ейс)(?=[\s.])/u;
+const LOCAL_BEHANCE_ICON = 'https://notion-local.host/behance.svg';
 const REGISTRATION_RESULT_BLOCK_ID = '305ca434-1bfb-80b0-b6eb-ca17ecf8744f';
 const REGISTRATION_RESULT_OLD_SENTENCE =
   'Конверсия на этапе дорегистрации выросла на 70%.';
@@ -119,6 +126,18 @@ function updateRegistrationResult(recordMap: ExtendedRecordMap): void {
   }
 }
 
+function updateBehanceBookmarkIcons(recordMap: ExtendedRecordMap): void {
+  for (const blockId of BEHANCE_BOOKMARK_IDS) {
+    const bookmarkBlock = getBlock(recordMap, blockId);
+    if (bookmarkBlock?.type !== 'bookmark') continue;
+
+    bookmarkBlock.format = {
+      ...bookmarkBlock.format,
+      bookmark_icon: LOCAL_BEHANCE_ICON,
+    };
+  }
+}
+
 export function reorderMainPortfolioCases(
   recordMap: ExtendedRecordMap,
   pageId: string
@@ -167,6 +186,7 @@ export function reorderMainPortfolioCases(
   });
   reorderCaseNavigation(recordMap);
   updateRegistrationResult(recordMap);
+  updateBehanceBookmarkIcons(recordMap);
 
   return recordMap;
 }

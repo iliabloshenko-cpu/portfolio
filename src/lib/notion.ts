@@ -6,7 +6,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { reorderMainPortfolioCases } from './reorderPortfolioCases';
 
-const notion = new NotionAPI();
+const notion = new NotionAPI({
+  apiBaseUrl: 'https://app.notion.com/api/v3',
+  ofetchOptions: {
+    headers: {
+      'User-Agent': 'notion-client (+https://github.com/NotionX/react-notion-x)',
+    },
+  },
+});
 const LOCAL_IMAGE_ORIGIN = 'https://notion-local.host';
 const BLOCKS_FETCH_CHUNK_SIZE = 100;
 
