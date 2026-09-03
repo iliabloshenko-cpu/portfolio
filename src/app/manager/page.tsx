@@ -4,7 +4,7 @@ import { portfolioPages } from '../../../site.config';
 
 const portfolioV3Config = portfolioPages.portfolioV3;
 
-export default async function PortfolioV3Page() {
+export default async function DesignManagerPage() {
   const recordMap = await getPage(portfolioV3Config.rootNotionPageId);
 
   return (

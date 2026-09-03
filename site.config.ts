@@ -26,7 +26,7 @@ export const portfolioPages = {
     author: 'Илья Блошенко',
   },
   portfolioV3: {
-    path: '/portfolio-v3',
+    path: '/manager',
     // Источник: https://rocky-papaya-a71.notion.site/303ca4341bfb805fb9cffe9eb132a200
     rootNotionPageId: '303ca4341bfb805fb9cffe9eb132a200',
     name: 'Илья Блошенко — Design Manager',
