@@ -25,6 +25,15 @@ export const portfolioPages = {
     description: 'Второй вариант портфолио Ильи Блошенко.',
     author: 'Илья Блошенко',
   },
+  portfolioV3: {
+    path: '/portfolio-v3',
+    // Источник: https://rocky-papaya-a71.notion.site/303ca4341bfb805fb9cffe9eb132a200
+    rootNotionPageId: '303ca4341bfb805fb9cffe9eb132a200',
+    name: 'Илья Блошенко — Design Manager',
+    description:
+      'Портфолио дизайн-менеджера: команда из 8 дизайнеров, найм и грейды, процессы со смежниками, продуктовые кейсы программы лояльности Ленты.',
+    author: 'Илья Блошенко',
+  },
 } satisfies Record<string, PortfolioPageConfig>;
 
 export const siteConfig = portfolioPages.main;
