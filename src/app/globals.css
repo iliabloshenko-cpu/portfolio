@@ -83,18 +83,49 @@ body {
   margin-bottom: 24px !important;
 }
 
-/* The hero on /manager is three blocks: the yellow role callout, the intro
-   paragraphs and the grey stats callout. Give them an even 28px rhythm instead of
-   the 5px/36px mix left behind when the "Опыт работы" heading was dropped. The
-   values hold at every width, so no mobile override is needed.
-   Placed after the rule above because both selectors have equal specificity. */
-.notion-text.notion-block-303ca4341bfb8134825ef271ed393504 {
+/* === Spacing rhythm on /manager ===
+   The rules above give every gray callout 5px of air on top and 48px underneath,
+   so headings, plates and paragraphs drifted apart. Even that out: 16px on both
+   sides of a plate, 28px before a heading. Everything here is scoped by the page
+   root block id, so the other two portfolio versions keep their own spacing. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-callout.notion-gray_background_co {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+}
+
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-callout.notion-gray_background_co + .notion-text {
+  margin-top: 1px !important;
+}
+
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-callout.notion-gray_background_co + .notion-h2,
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-callout.notion-gray_background_co + .notion-h3 {
+  margin-top: 13px !important;
+}
+
+/* Without this an H3 sits 21px below the text above it while every other heading
+   sits at 28px. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-h3 {
+  margin-top: 27px !important;
+}
+
+/* Let captions hug their screenshot instead of floating 9px under it. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-asset-wrapper {
+  margin-bottom: 1px !important;
+}
+
+/* Hero exception: the three intro blocks keep the 28px rhythm agreed earlier.
+   Scoped the same way so these win over the gray-callout rule above. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-text.notion-block-303ca4341bfb8134825ef271ed393504 {
   margin-top: 24px !important;
 }
 
-.notion-callout.notion-block-a51f9198ee01411f8b4ee89c09fdacf3 {
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-callout.notion-block-a51f9198ee01411f8b4ee89c09fdacf3 {
   margin-top: 27px !important;
   margin-bottom: 1px !important;
+}
+
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-callout.notion-block-a51f9198ee01411f8b4ee89c09fdacf3 + .notion-h1 {
+  margin-top: 1.08em !important;
 }
 
 /* The auto table of contents renders at 14px, while the hand-written case lists
