@@ -164,6 +164,33 @@ body {
   display: none !important;
 }
 
+/* The product cases carry their own "Проблема / Решение / Результат" headings,
+   which the auto contents list picks up — 21 rows of noise around the four case
+   titles. Hide them by heading id; the case titles themselves stay. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#84e4eb36b2ae403fb25dd00b76911ec3"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#55421ef64e4a46fc9130004e2a550af6"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#baf43d1b06d34fb7a7d9bfe2cf287d8d"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#4ae70ea0f9894948aa7f306341e45c89"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#66aabf64e31d491fbe5ab1e825301c28"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#1d233edf6e08468aa7f4ec54746e3d1b"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#b75b50670c284beb81dc68fd6a0c7779"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#08bbd40d5d1d435883fca8558e026498"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#2237e4176bf249089ae3a7df888a4c76"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#7008e34003f244daa7aa9a647132f70a"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#bc538e69ac9241cdb9b5e9d5019fd629"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#05fcbaae191a4a13bb7e216d0d4ac4af"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#1f6b0f1d7fe24190a0aa81f0edef65a5"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#03ee676e6c4c48da99c0b91e11df22c2"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#a105e63c6c99430ea404a2972c12ffc9"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#52e11b0b054045fca85f2d078841051a"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#fe601669f5594842ad9085b45941b576"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#d5165393d8f84157b6569c3fb8ed61fa"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#bc4b9a0fda434ab481f0936600160023"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#cce12b41147d452e891e9b9476eefaba"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#567640eb58334939a3f642c367af2023"] {
+  display: none !important;
+}
+
 /* Hide legacy page links left at the bottom of portfolio v2. */
 .notion-blank.notion-block-338ca4341bfb816a98f1e0104868a5e9,
 .notion-blank.notion-block-338ca4341bfb81149dc3ed79aa9a0f31,
