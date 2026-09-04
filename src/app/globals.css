@@ -202,6 +202,13 @@ body {
   margin-top: 9px !important;
 }
 
+/* Double the air above "Продуктовые кейсы" so the switch from the management
+   half to the product half reads as a real break. Set in em rather than px, so
+   it stays double at the smaller mobile heading size too. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-h1.notion-block-303ca4341bfb812aa80dd3b72641b23e {
+  margin-top: 2.16em !important;
+}
+
 /* Hide legacy page links left at the bottom of portfolio v2. */
 .notion-blank.notion-block-338ca4341bfb816a98f1e0104868a5e9,
 .notion-blank.notion-block-338ca4341bfb81149dc3ed79aa9a0f31,
