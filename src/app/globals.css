@@ -96,6 +96,16 @@ body {
   margin-top: 24.4px !important;
 }
 
+/* The auto table of contents renders at 14px, while the hand-written case lists
+   on the other portfolio versions are ordinary 16px text. Match them, and trim
+   the row padding so the rows end up the same height as those lists. */
+.notion-table-of-contents-item {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+}
+
 /* Hide legacy page links left at the bottom of portfolio v2. */
 .notion-blank.notion-block-338ca4341bfb816a98f1e0104868a5e9,
 .notion-blank.notion-block-338ca4341bfb81149dc3ed79aa9a0f31,
