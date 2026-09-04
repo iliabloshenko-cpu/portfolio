@@ -233,7 +233,8 @@ body {
   display: none !important;
 }
 
-/* Telegram button pinned into the sticky header band (45px tall) on /manager. */
+/* Telegram button pinned into the sticky header band (45px tall) on every
+   portfolio version. */
 .tg-pin {
   position: fixed;
   top: 7px;

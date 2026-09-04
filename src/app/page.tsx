@@ -1,5 +1,6 @@
 import { getPage } from '@/lib/notion';
 import NotionPage from '@/components/NotionPage';
+import TelegramPin from '@/components/TelegramPin';
 import { siteConfig } from '../../site.config';
 
 export default async function Home() {
@@ -7,6 +8,7 @@ export default async function Home() {
 
   return (
     <main>
+      <TelegramPin />
       <NotionPage recordMap={recordMap} />
     </main>
   );
