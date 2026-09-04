@@ -191,6 +191,17 @@ body {
   display: none !important;
 }
 
+/* The contents list sat 5px under the stats callout but 37px above the heading
+   that follows it. Even both sides out. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents {
+  margin-top: 36px !important;
+}
+
+/* The quote in the B2B case ran straight into the paragraph under it. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-text.notion-block-46a0b7d851de42d793cb26e2db7e74d5 {
+  margin-top: 9px !important;
+}
+
 /* Hide legacy page links left at the bottom of portfolio v2. */
 .notion-blank.notion-block-338ca4341bfb816a98f1e0104868a5e9,
 .notion-blank.notion-block-338ca4341bfb81149dc3ed79aa9a0f31,
@@ -367,6 +378,17 @@ body {
   /* Callout-блоки — компактнее */
   .notion-callout {
     padding: 12px !important;
+  }
+
+  /* Headings are smaller here, so the contents list needs a smaller gap to match. */
+  .notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents {
+    margin-top: 27px !important;
+  }
+
+  /* Long case titles are set nowrap and ran past the right edge on a 375px
+     screen. Let them wrap instead of being cut off. */
+  .notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item-body {
+    white-space: normal !important;
   }
 
   /* Обложка страницы */
