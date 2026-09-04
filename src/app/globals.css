@@ -83,6 +83,19 @@ body {
   margin-bottom: 24px !important;
 }
 
+/* Hero stats callout on /manager sat 5px below the intro text but 57px above the
+   next heading. Match the gap above it to the yellow callout -> heading gap and
+   take the same amount off below, so the heading underneath does not move.
+   Placed after the rule above because both selectors have equal specificity. */
+.notion-callout.notion-block-a51f9198ee01411f8b4ee89c09fdacf3 {
+  margin-top: 35px !important;
+  margin-bottom: 1px !important;
+}
+
+.notion-h1.notion-block-303ca4341bfb813d9d2af823165c23c2 {
+  margin-top: 24.4px !important;
+}
+
 /* Hide legacy page links left at the bottom of portfolio v2. */
 .notion-blank.notion-block-338ca4341bfb816a98f1e0104868a5e9,
 .notion-blank.notion-block-338ca4341bfb81149dc3ed79aa9a0f31,
@@ -259,6 +272,16 @@ body {
   /* Callout-блоки — компактнее */
   .notion-callout {
     padding: 12px !important;
+  }
+
+  /* Headings are smaller on mobile, so the same visual gap needs smaller values;
+     the heading below keeps the library default. */
+  .notion-callout.notion-block-a51f9198ee01411f8b4ee89c09fdacf3 {
+    margin-top: 27px !important;
+  }
+
+  .notion-h1.notion-block-303ca4341bfb813d9d2af823165c23c2 {
+    margin-top: 1.08em !important;
   }
 
   /* Обложка страницы */
