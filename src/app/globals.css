@@ -138,6 +138,32 @@ body {
   padding-bottom: 3px !important;
 }
 
+/* Screenshots pick up the same 16px corners as the gray callouts. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-asset-wrapper img {
+  border-radius: 16px !important;
+}
+
+/* Trim the table of contents: the page anchor and the two third-level headings
+   under "Внешние процессы" add noise. Targeted by the heading block id in href,
+   so adding or reordering cases will not shift these onto the wrong rows. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#303ca4341bfb813d9d2af823165c23c2"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#303ca4341bfb81aa84abe46fd59e03bb"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#303ca4341bfb812dba1bfb00e7e9e3dc"] {
+  display: none !important;
+}
+
+/* The two top-level sections carry a touch more weight than the cases in them. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#303ca4341bfb814db7cad7dcaae9ca45"],
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-table-of-contents-item[href="#303ca4341bfb812aa80dd3b72641b23e"] {
+  font-weight: 500 !important;
+}
+
+/* The Telegram callout closing the page. Hidden here rather than deleted in
+   Notion: its icon is an uploaded file, and the API cannot remove such a block. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-callout.notion-block-303ca4341bfb814ab14efbf7a32f2814 {
+  display: none !important;
+}
+
 /* Hide legacy page links left at the bottom of portfolio v2. */
 .notion-blank.notion-block-338ca4341bfb816a98f1e0104868a5e9,
 .notion-blank.notion-block-338ca4341bfb81149dc3ed79aa9a0f31,
