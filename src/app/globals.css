@@ -245,8 +245,8 @@ body {
   height: 31px;
   padding: 0 12px;
   border-radius: 16px;
-  background: #e7f3f8;
-  color: #337ea9;
+  background: #2aabee;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
@@ -255,21 +255,13 @@ body {
 }
 
 .tg-pin:hover {
-  background: #d3e5ef;
+  background: #229ed9;
 }
 
 .tg-pin svg {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   flex: none;
-}
-
-/* Below this the full label starts crowding the name in the header, so the
-   button falls back to just "Telegram" next to the icon. */
-@media (max-width: 400px) {
-  .tg-pin-tail {
-    display: none;
-  }
 }
 
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
