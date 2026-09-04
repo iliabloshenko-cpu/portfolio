@@ -209,6 +209,12 @@ body {
   margin-top: 2.16em !important;
 }
 
+/* Push the "Как я стал лидом" note 12px further down from the role line above it.
+   Everything below moves with it, which is the point. */
+.notion-block-303ca4341bfb805fb9cffe9eb132a200 .notion-text.notion-block-a9ce31ee682a4608b02c062b0d71dec5 {
+  margin-top: 13px !important;
+}
+
 /* Hide legacy page links left at the bottom of portfolio v2. */
 .notion-blank.notion-block-338ca4341bfb816a98f1e0104868a5e9,
 .notion-blank.notion-block-338ca4341bfb81149dc3ed79aa9a0f31,
