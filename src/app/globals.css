@@ -233,6 +233,37 @@ body {
   display: none !important;
 }
 
+/* Telegram button pinned into the sticky header band (45px tall) on /manager. */
+.tg-pin {
+  position: fixed;
+  top: 7px;
+  right: 20px;
+  z-index: 201;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 31px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background: #e7f3f8;
+  color: #337ea9;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.tg-pin:hover {
+  background: #d3e5ef;
+}
+
+.tg-pin svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
 /* === Смещение для якорей (чтобы заголовок не прятался) === */
 [id] {
   scroll-margin-top: 20px;
@@ -407,6 +438,11 @@ body {
   /* Обложка страницы */
   .notion-page-cover-wrapper {
     height: 200px !important;
+  }
+
+  /* Requested: 16px from the right edge on phones. */
+  .tg-pin {
+    right: 16px;
   }
 
   /* Отступы для встроенных элементов */
