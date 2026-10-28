@@ -6,6 +6,33 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var state = body.getAttribute("data-state") || "";
   if (!reduce) html.classList.add("js-motion");
+  /* страница кейса открывается с самого верха (заголовок и «Коротко»), если в адресе нет якоря */
+  function jumpTop() { window.scrollTo(0, 0); }
+  if (body.classList.contains("page-case") && !location.hash) {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    jumpTop();
+    /* пока человек сам не начал листать, страница стоит в самом верху: даже если браузер или просмотрщик
+       восстановит прокрутку с прошлой страницы — при возврате «Назад», после load или чуть позже */
+    var touched = false, guardUntil = Infinity;
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) { addEventListener(ev, function () { touched = true; }, { passive: true }); });
+    addEventListener("pageshow", function () { if (!touched) jumpTop(); });
+    addEventListener("load", function () { if (!touched) jumpTop(); guardUntil = Date.now() + 1500; });
+    addEventListener("scroll", function () { if (!touched && Date.now() < guardUntil && scrollY > 0) jumpTop(); }, { passive: true });
+  }
+
+  /* плавная прокрутка к якорю на этой же странице (меню на главной, оглавление «Продуктовые кейсы») */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var url = new URL(a.href, location.href);
+    if (url.pathname !== location.pathname || !url.hash) return;
+    var el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!el) return;
+    e.preventDefault();
+    var off = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+    window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - off, behavior: reduce ? "auto" : "smooth" });
+    if (history.pushState) history.pushState(null, "", url.hash);
+  });
   if (state === "loading") body.classList.add("is-loading");
 
   /* ---------- фон hero: WebGL-шейдер ---------- */
@@ -15,7 +42,7 @@
       "float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}" +
       "float n(vec2 p){vec2 i=floor(p),u=fract(p);u=u*u*(3.-2.*u);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1)),u.x),u.y);}" +
       "float fb(vec2 p){float v=0.,a=.5;for(int k=0;k<5;k++){v+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return v;}" +
-      "void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.6;float s=t*.035;" +
+      "void main(){vec2 uv=gl_FragCoord.xy/r;vec2 p=uv*vec2(r.x/r.y,1.)*1.6;float s=t*.105;" +
       "vec2 q=vec2(fb(p+s),fb(p+vec2(5.2,1.3)-s));float v=fb(p+2.2*q+vec2(s*1.5,-s));" +
       "vec3 c=mix(vec3(.95,.965,1.),vec3(.77,.84,1.),smoothstep(.2,.65,v));c=mix(c,vec3(.52,.62,.97),.85*smoothstep(.5,.92,v*q.x+.2));c=mix(c,vec3(.80,.70,.99),.25*smoothstep(.55,.9,q.y));" +
       "c+=.004*sin(uv.y*600.+v*40.);float d=distance(uv*vec2(r.x/r.y,1.),f*vec2(r.x/r.y,1.));" +
@@ -173,20 +200,43 @@
       var a = document.querySelector('.toc a[href="#' + id + '"]');
       if (chipLabel && a) chipLabel.textContent = a.textContent;
     }
-    var to = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
-    }, { rootMargin: "-30% 0px -60% 0px" });
-    parts.forEach(function (p) { to.observe(p); });
+    /* активный раздел считается по положению, а не по событиям пересечения: тогда при прокрутке вверх
+       длинный раздел («Решение») снова подсвечивается, а не остаётся висеть предыдущий */
+    var lock = null, lockTimer;
+    function current() {
+      var doc = document.documentElement, id = parts[0].id;
+      if (scrollY + innerHeight >= doc.scrollHeight - 2) return parts[parts.length - 1].id; // дочитал до конца
+      // линия чуть ниже места, куда встаёт раздел после клика по оглавлению (scroll-margin-top + 96 px)
+      var line = (parseFloat(getComputedStyle(parts[0]).scrollMarginTop) || 0) + 96;
+      parts.forEach(function (p) { if (p.getBoundingClientRect().top <= line) id = p.id; });
+      return id;
+    }
     function onScroll() {
       var r = article.getBoundingClientRect(), total = r.height - innerHeight * 0.6;
       var k = Math.max(0, Math.min(1, (-r.top + innerHeight * 0.3) / total));
-      if (r.top > innerHeight * 0.4 && parts[0]) setActive(parts[0].id); // над текстом — активен первый раздел
+      if (parts[0] && !lock) setActive(current());
       if (bar) bar.style.transform = "scaleX(" + k + ")";
       if (tbar) tbar.style.transform = "scaleX(" + k + ")";
       if (pct) pct.textContent = "Прочитано " + Math.round(k * 100) + "%";
     }
-    addEventListener("scroll", onScroll, { passive: true }); onScroll();
-    if (parts[0]) setActive(parts[0].id);
+    var tocTick = false;
+    addEventListener("scroll", function () { if (!tocTick) { tocTick = true; requestAnimationFrame(function () { onScroll(); tocTick = false; }); } }, { passive: true });
+    onScroll();
+    /* клик по оглавлению: сразу подсвечиваем выбранный раздел (без перебора промежуточных),
+       прокручиваем к нему и не пишем якорь в адрес — иначе «Назад» или обновление открывают кейс с середины */
+    function unlock() { lock = null; onScroll(); }
+    addEventListener("scrollend", function () { if (lock) { clearTimeout(lockTimer); unlock(); } });
+    document.querySelectorAll('[data-toc] a, .chip-menu a').forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var el = document.getElementById(a.getAttribute("href").slice(1));
+        if (!el) return;
+        e.preventDefault();
+        lock = el.id; setActive(el.id);
+        var off = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+        window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - off, behavior: reduce ? "auto" : "smooth" });
+        clearTimeout(lockTimer); lockTimer = setTimeout(unlock, 1200);
+      });
+    });
 
     var chip = document.querySelector(".chip"), menu = document.querySelector(".chip-menu");
     if (chip && menu) {
