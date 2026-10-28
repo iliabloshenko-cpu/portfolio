@@ -34,6 +34,7 @@
   --color-text-muted: #5b5b66;
   --color-accent: #4a45d1;
   --color-on-accent: #ffffff;
+  --color-success: #1ca45c; /* галочки в «Результате» */
   --color-scrim: rgba(10, 10, 14, 0.9);
   --color-header: rgba(255, 255, 255, 0.82);
   --color-device: #0f0f12;
@@ -50,11 +51,13 @@
   /* цвета кейсов: tint — фон секции, strong/deep/glow — двухтоновая подложка экранов, ink — текст и цифры на tint */
   /* orb — насколько сильно цвет кейса просвечивает сквозь стекло подложки */
   --case1-tint: #f1eeff; --case1-strong: #8d76ff; --case1-deep: #3a1fb8; --case1-glow: #e3d2ff; --case1-ink: #2e1d86; --case1-orb: 34%;
-  /* Дорегистрация: светло-оранжевый, как плашка про скидку на день рождения на экране */
-  --case2-tint: #fff2e7; --case2-strong: #ffa765; --case2-deep: #e2671c; --case2-glow: #ffd9b8; --case2-ink: #7a3a0c; --case2-orb: 55%;
+  /* Дорегистрация: зелёный, как плашка про скидку ко дню рождения на экране формы */
+  --case2-tint: #e7f6ee; --case2-strong: #2fbf86; --case2-deep: #0b6b4f; --case2-glow: #bdeccf; --case2-ink: #0b4a33; --case2-orb: 50%;
   /* Персональные предложения: голубой, как градиент блока предложений на экране (светло-голубой → синий) */
   --case3-tint: #ebf3ff; --case3-strong: #5b97f7; --case3-deep: #1f3fae; --case3-glow: #b9dbff; --case3-ink: #143d8f; --case3-orb: 42%;
-  --case4-tint: #fff5d6; --case4-strong: #ffbe1a; --case4-deep: #e06a00; --case4-glow: #fff3a0; --case4-ink: #5e4100; --case4-orb: 60%;
+  --case4-tint: #fcf8eb; --case4-strong: #ffbe1a; --case4-deep: #e06a00; --case4-glow: #fff6c8; --case4-ink: #5e4100; --case4-orb: 30%;
+  /* цвет цифр результата: по умолчанию ink кейса; «Усатый клуб» — жёлтый из шапки клуба (на пару тонов темнее), «Дорегистрация» — зелёный текста плашки про день рождения (решения лида) */
+  --case1-metric: #804fb0; --case2-metric: #00be64; --case3-metric: #0187e8; --case4-metric: #f0c800;
 
   /* фон hero (фолбэк до шейдера и при reduced-motion без WebGL) */
   --hero-a: #f3f7ff; --hero-b: #c6d8ff; --hero-c: #86a2f4; --hero-d: #ffd4bd;
@@ -75,14 +78,18 @@
   --radius-s: 12px; --radius-m: 20px; --radius-l: 32px; --radius-pill: 999px;
   --radius-device: 40px; --radius-screen: 32px;
 
-  --shadow-device: 0 24px 60px -20px rgba(17, 17, 20, 0.35);
+  --shadow-device: var(--shadow-stage); /* у телефонов та же мягкая тень, что у стеклянной подложки */
   --shadow-header: 0 1px 0 rgba(17, 17, 20, 0.06);
   --color-btn-hover: #34343d;
   /* стеклянная подложка экранов */
   --stage-glass-top: rgba(255, 255, 255, 0.6); --stage-glass-bottom: rgba(255, 255, 255, 0.34);
   --stage-pad: var(--space-8); --stage-shift: 16px;
   --color-divider-soft: rgba(17, 17, 20, 0.12);
-  --shadow-stage: 0 30px 60px -30px rgba(17, 17, 20, 0.25);
+  /* матовое стекло поверх фона шапки */
+  --hero-glass-veil: rgba(255, 255, 255, 0.14);
+  --hero-glass-sheen: rgba(255, 255, 255, 0.23);
+  --hero-glass-edge: rgba(255, 255, 255, 0.6);
+  --shadow-stage: 0 8px 15px -8px rgba(17, 17, 20, 0.03);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur-s: 160ms; --dur-m: 400ms; --dur-l: 700ms;

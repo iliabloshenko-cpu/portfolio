@@ -18,26 +18,20 @@ ym(110863706,"init",{ssr:true,webvisor:true,clickmap:true,trackLinks:true,accura
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/110863706" style="position:absolute;left:-9999px" alt=""></div></noscript>
 </head>
-<body class="page-case" style="--case-tint: var(--case3-tint); --case-strong: var(--case3-strong); --case-ink: var(--case3-ink); --case-deep: var(--case3-deep); --case-glow: var(--case3-glow); --case-orb: var(--case3-orb); --next-tint: var(--case4-tint); --next-strong: var(--case4-strong); --next-ink: var(--case4-ink); --next-deep: var(--case4-deep); --next-glow: var(--case4-glow); --next-orb: var(--case4-orb);">
-<header class="header header--solid case-header" data-name="Header / Case">
+<body class="page-case" style="--case-tint: var(--case3-tint); --case-strong: var(--case3-strong); --case-ink: var(--case3-ink); --case-deep: var(--case3-deep); --case-glow: var(--case3-glow); --case-orb: var(--case3-orb); --case-metric: var(--case3-metric);">
+<header class="header header--solid" data-name="Header">
   <div class="container header__in">
-    <a class="header__me" href="./#case-offers" aria-label="Все кейсы"><img src="assets/img/avatar-96.webp" width="96" height="96" alt=""><span>Илья Блошенко</span></a>
-    <button class="chip" type="button" aria-expanded="false" aria-controls="chip-menu" data-component="Section Chip"><span>Коротко</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+    <a class="header__me" href="./" aria-label="Илья Блошенко — на главную"><img src="assets/img/avatar-96.webp" width="96" height="96" alt=""><span>Илья Блошенко</span></a>
+    <nav class="header__nav" aria-label="Разделы"><a href="./#about">Обо мне</a><a href="./#cases">Кейсы</a><a href="./#retro">Ранние проекты</a></nav>
     <a class="tg " href="https://t.me/Ilia_B23" target="_blank" rel="noopener noreferrer" data-component="Telegram Button"><i class="tg__icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></i><span>Мой Telegram</span></a>
   </div>
   <div class="progress" aria-hidden="true"></div>
 </header>
-<nav class="chip-menu" id="chip-menu" hidden aria-label="Разделы кейса" data-toc><a href="#short">Коротко</a><a href="#problem">Проблема</a><a href="#brief">ЦА · Метрики</a><a href="#solution">Решение</a><a href="#result">Результат</a></nav>
 <main>
 <section class="cover" data-name="Section / Case Cover">
-  <div class="container cover__grid">
-    <div class="cover__text">
-      <a class="back" href="./#case-offers"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Все кейсы</a>
-      <p class="case__label"><b>04</b> Лента · кейс 4 из 4</p>
-      <h1 class="cover__title">Персональные предложения</h1>
-      <div class="cover__metrics"><div class="metric metric--xl" data-component="Metric" data-variant="size=xl"><span class="metric__value" data-countup="45 000">45 000</span><span class="metric__label">заказов с активированными предложениями</span><span class="metric__base">после запуска в доставке</span></div><div class="metric" data-component="Metric" data-variant="size=m"><span class="metric__value" data-countup="+15%">+15%</span><span class="metric__label">разница в среднем чеке</span><span class="metric__base">заказы с предложениями и без них</span></div></div>
-    </div>
-    <div class="stage" data-name="Case Stage"><div class="device device--back" data-component="Phone Screen"><img src="assets/img/s18.webp" width="780" height="1689" alt="Детальный экран персональных предложений" fetchpriority="high"></div><div class="device device--front" data-component="Phone Screen"><img src="assets/img/s19.webp" width="780" height="1689" alt="Детальный экран при скролле с каруселью" fetchpriority="high"></div></div>
+  <div class="container">
+    <a class="back" href="./#case-offers"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Все кейсы</a>
+    <h1 class="cover__title">4. Персональные предложения</h1>
   </div>
 </section>
 <div class="reader container" data-name="Section / Reader">
@@ -48,20 +42,23 @@ ym(110863706,"init",{ssr:true,webvisor:true,clickmap:true,trackLinks:true,accura
       <section id="problem"><h2>Проблема</h2><p>Персональные предложения — скидки на конкретные товары, подобранные алгоритмами на основе истории покупок — были только для офлайн-покупок и самовывоза. Бизнес хотел запустить персональные предложения в доставке, чтобы повысить средний чек, частоту заказов и вовлечённость.</p></section>
       <section id="brief"><div class="brief" style="margin-top:0"><div class=""><h3>Целевая аудитория</h3><p>Пользователи, которые заказывают доставку продуктов.</p></div><div class=""><h3>Метрики</h3><p>Целевые: количество заказов с активированными предложениями, средний чек, ARPU, частота заказов.</p></div></div></section>
       <section id="solution"><h2>Решение</h2><p>Спроектировал блок карусели с персональными предложениями на главном экране лояльности с переключателем «Доставка / Самовывоз». Пользователь видит товары со скидкой, адаптированные под его предпочтения, и может активировать предложение в одно нажатие.</p><div class="shots shots--wide" data-component="Screens" data-variant="layout=wide"><figure><button class="shot" type="button" data-caption="" aria-label="Увеличить: Карусель персональных предложений на экране лояльности"><img src="assets/img/s17.webp" width="1600" height="1924" alt="Карусель персональных предложений на экране лояльности" loading="lazy" decoding="async"></button></figure></div><p>Далее разработал детальный экран персональных предложений. Ключевое решение — убрал когнитивную нагрузку. Вместо длинного блока с условиями акции на первом экране вынес сразу листинг товаров с ценами и кнопкой активации. Условия спрятал в кнопку info в навбаре.</p><div class="shots" data-component="Screens" data-variant="layout=pair"><figure><button class="shot" type="button" data-caption="Деталка ПП" aria-label="Увеличить: Деталка ПП"><img src="assets/img/s18.webp" width="780" height="1689" alt="Детальный экран персональных предложений" loading="lazy" decoding="async"></button><figcaption>Деталка ПП</figcaption></figure><figure><button class="shot" type="button" data-caption="Деталка при скролле с каруселью ПП" aria-label="Увеличить: Деталка при скролле с каруселью ПП"><img src="assets/img/s19.webp" width="780" height="1689" alt="Детальный экран при скролле с каруселью" loading="lazy" decoding="async"></button><figcaption>Деталка при скролле с каруселью ПП</figcaption></figure></div></section>
-      <section id="result"><h2>Результат</h2><div class="results" data-name="Results"><div class="metric" data-component="Metric" data-variant="size=m"><span class="metric__value" data-countup="45 000">45 000</span><span class="metric__label">заказов с активированными предложениями</span><span class="metric__base">после запуска в доставке</span></div><div class="metric" data-component="Metric" data-variant="size=m"><span class="metric__value" data-countup="+15%">+15%</span><span class="metric__label">разница в среднем чеке</span><span class="metric__base">заказы с предложениями и без них</span></div></div><ul class="bullets"><li><b>45 000 заказов</b> с активированными персональными предложениями после запуска в доставке.</li><li><b>+15% разница</b> в среднем чеке между заказами с ПП и без них.</li><li>Зафиксирован рост ARPU, AMPU и частоты заказов у пользователей, активировавших персональные предложения.</li></ul></section>
+      <section id="result"><h2>Результат</h2><div class="results" data-name="Result Metrics"><div class="metric" data-component="Metric" data-variant="size=m"><span class="metric__value" data-countup="45 000">45 000</span><span class="metric__label">заказов с активированными предложениями</span><span class="metric__base">после запуска в доставке</span></div><div class="metric" data-component="Metric" data-variant="size=m"><span class="metric__value" data-countup="+15%">+15%</span><span class="metric__label">разница в среднем чеке</span><span class="metric__base">заказы с предложениями и без них</span></div></div><ul class="checks" data-component="Result Checks"><li>Зафиксирован рост ARPU, AMPU и частоты заказов у пользователей, активировавших персональные предложения.</li></ul></section>
+      <hr class="more__divider">
+      <section class="more" data-name="Other Cases"><h2>Другие кейсы</h2><div class="more__grid"><a class="more-card" href="case-pets.html" style="--case-tint: var(--case4-tint); --case-strong: var(--case4-strong); --case-ink: var(--case4-ink); --case-deep: var(--case4-deep); --case-glow: var(--case4-glow); --case-orb: var(--case4-orb); --case-metric: var(--case4-metric);" data-component="Case Card">
+          <span class="more-card__head"><span class="more-card__title">Усатый клуб</span><i class="more-card__arrow"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          <span class="more-card__metric"><b>52 000</b><span>новых пользователей в клубе</span></span>
+        </a><a class="more-card" href="case-registration.html" style="--case-tint: var(--case2-tint); --case-strong: var(--case2-strong); --case-ink: var(--case2-ink); --case-deep: var(--case2-deep); --case-glow: var(--case2-glow); --case-orb: var(--case2-orb); --case-metric: var(--case2-metric);" data-component="Case Card">
+          <span class="more-card__head"><span class="more-card__title">Дорегистрация в&nbsp;программе лояльности</span><i class="more-card__arrow"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          <span class="more-card__metric"><b>+70%</b><span>к конверсии в дорегистрацию</span></span>
+        </a><a class="more-card" href="case-subscriptions.html" style="--case-tint: var(--case1-tint); --case-strong: var(--case1-strong); --case-ink: var(--case1-ink); --case-deep: var(--case1-deep); --case-glow: var(--case1-glow); --case-orb: var(--case1-orb); --case-metric: var(--case1-metric);" data-component="Case Card">
+          <span class="more-card__head"><span class="more-card__title">Подписки</span><i class="more-card__arrow"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+          <span class="more-card__metric"><b>+86%</b><span>к конверсии в покупку подписки</span></span>
+        </a></div></section>
     </article>
   </div>
 </div>
-<a class="next" href="case-pets.html" data-name="Section / Next Case">
-  <div class="container next__in"><div><p class="eyebrow">Следующий кейс · 01</p><p class="next__title">Усатый клуб</p></div><span class="next__arrow"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-</a>
-<section class="contact container" data-name="Section / Contact">
-  <h2 class="h2">Контакты</h2>
-  <a class="tg tg--lg" href="https://t.me/Ilia_B23" target="_blank" rel="noopener noreferrer" data-component="Telegram Button"><i class="tg__icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></i><span>Написать в Telegram</span></a>
-</section>
-<footer class="footer"><div class="container footer__in">© 2026 Илья Блошенко</div></footer>
-
 </main>
+<footer class="footer"><div class="container footer__in">© 2026 Илья Блошенко</div></footer>
 <div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Экран крупно" data-name="Lightbox">
   <span class="lightbox__count"></span>
   <button class="lightbox__btn lightbox__close" type="button" aria-label="Закрыть"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
