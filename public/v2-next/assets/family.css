@@ -4,8 +4,6 @@
 :root {
   /* v2: Omni Support Admin — индиго (тёмная шапка и акценты админки OSA) */
   --case5-tint: #eef0fb; --case5-strong: #6f7bf7; --case5-deep: #3a43c4; --case5-glow: #dadfff; --case5-ink: #262c7a; --case5-orb: 40%; --case5-metric: #4c55d9;
-  /* v2: CMS-админка — бирюза (между индиго Omni и голубым ПП, чтобы соседние кейсы не сливались) */
-  --case6-tint: #e8f6f6; --case6-strong: #3cb4b4; --case6-deep: #0e7c7c; --case6-glow: #c5eceb; --case6-ink: #0b4f4f; --case6-orb: 42%; --case6-metric: #0e8c8c;
   /* manager: один спокойный графитово-синий набор на все менеджерские кейсы — группа читается как одно целое,
      а 4 цветных продуктовых кейса ниже остаются «витриной» */
   --case7-tint: #eef1f6; --case7-strong: #7c8db0; --case7-deep: #3e5683; --case7-glow: #dde4ef; --case7-ink: #2b3d5f; --case7-orb: 38%; --case7-metric: #3e5683;
@@ -106,19 +104,14 @@
   background: rgba(17, 17, 20, 0.06); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text-muted); }
 
 /* ================= Страница веб-кейса ================= */
-/* «Ключевые решения»: карта решения в начале раздела, каждая карточка ведёт к своему подразделу */
-.decisions { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin: var(--space-6) 0 var(--space-10); counter-reset: d; }
-.decision { display: flex; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-m); background: var(--case-tint);
-  color: var(--color-text); text-decoration: none; transition: background-color var(--dur-s) var(--ease); }
-.decision:hover { background: color-mix(in srgb, var(--case-tint) 60%, white); }
+/* Номер подраздела решения — в круге цвета кейса */
 .decision__n { display: grid; place-items: center; width: 32px; height: 32px; flex: none; border-radius: 50%; background: var(--color-bg);
   font-size: 15px; font-weight: 700; color: var(--case-metric); font-variant-numeric: tabular-nums; }
-.decision b { display: block; font-size: 17px; line-height: 1.3; font-weight: 700; }
-.decision__t > span { display: block; margin-top: var(--space-1); font-size: 15px; line-height: 1.45; color: var(--color-text-muted); }
-@media (min-width: 768px) { .decisions { grid-template-columns: 1fr 1fr; } }
 
 /* Подраздел решения: жирный заголовок абзаца, текст, ниже — экран */
 .sub { margin-top: var(--space-12); scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+/* подраздел сразу под «Решением» — на том же расстоянии, что абзац в /new (20) */
+.article h2 + .sub { margin-top: var(--space-5); }
 .sub h3 { font-size: 20px; line-height: 1.3; font-weight: 700; margin-bottom: var(--space-3); }
 .sub h3 .decision__n { display: inline-grid; width: 28px; height: 28px; margin-right: var(--space-2); font-size: 14px; vertical-align: 2px; background: var(--case-tint); }
 
