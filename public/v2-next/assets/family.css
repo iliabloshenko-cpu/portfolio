@@ -102,10 +102,6 @@
   .group-head + .case { padding-top: var(--space-16); }
 }
 
-/* ================= Масштаб задачи вместо результата в цифрах (B2B без метрик) ================= */
-.metric__base--scope { display: inline-flex; align-self: flex-start; margin-top: var(--space-1); padding: 2px 8px; border-radius: var(--radius-pill);
-  background: rgba(17, 17, 20, 0.06); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text-muted); }
-
 /* ================= Страница веб-кейса ================= */
 /* Номер подраздела решения — в круге цвета кейса */
 .decision__n { display: grid; place-items: center; width: 32px; height: 32px; flex: none; border-radius: 50%; background: var(--color-bg);
