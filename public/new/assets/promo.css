@@ -206,6 +206,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .cases .case:first-of-type { padding-top: calc(var(--space-20) + var(--space-2)); }
   .cases .case:last-of-type { padding-bottom: calc(var(--space-10) + var(--space-1)); }
   .section.retro { padding-top: calc(var(--space-10) + var(--space-1)); padding-bottom: 0; }
+  /* телефоны в ленте: на телефоне они уже (168 вместо 208), поэтому скругления на 8 px меньше — 32 / 24, та же доля ширины, что в вебе */
+  .case .device { border-radius: calc(var(--radius-device) - 8px); }
+  .case .device img { border-radius: calc(var(--radius-screen) - 8px); }
   /* «Контакты»: от «Ранних проектов» до заголовка столько же, сколько от кнопки до линии футера (96 px) */
   /* кнопка Telegram в «Контактах» — точно как «Написать в Telegram» в шапке: во всю ширину поля (20 px от краёв),
      высота 56, значок 48 слева, подпись по центру */
