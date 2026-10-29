@@ -39,27 +39,11 @@
   .stage--web .window--front { left: 5%; bottom: 8%; width: 56%; }
 }
 
-/* ================= Подложка менеджерского кейса: документ + карточка с цифрой ================= */
-.stage--doc { display: block; aspect-ratio: 350 / 320; padding: 0; }
-.stage--doc .window { position: absolute; left: 9%; top: 9%; width: 70%; transition: transform var(--dur-m) var(--ease); }
-.stage--doc .window img { max-height: none; }
-.statcard { position: absolute; right: 6%; bottom: 9%; display: flex; flex-direction: column; gap: var(--space-1); width: 52%;
-  padding: var(--space-5); border-radius: var(--radius-m);
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.7));
-  -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%);
-  box-shadow: inset 0 0 0 1px var(--glass-edge), 0 24px 48px -24px rgba(17, 17, 20, 0.22);
-  transition: transform var(--dur-m) var(--ease); }
-.statcard b { font-family: var(--font-display); font-size: 40px; line-height: 1; letter-spacing: -0.03em; font-weight: 700; color: var(--case-metric); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.statcard span { font-size: 14px; line-height: 1.35; font-weight: 600; }
-.statcard.statcard--quote b { font-size: 17px; line-height: 1.4; letter-spacing: 0; font-weight: 600; color: var(--color-text); white-space: normal; }
-.statcard.statcard--quote span { font-weight: 500; color: var(--color-text-muted); }
-.js-motion a.stage--doc:hover .statcard { transform: translateY(-8px); }
-.js-motion a.stage--doc:hover .window { transform: translateY(6px); }
-@media (min-width: 768px) {
-  .stage--doc { aspect-ratio: 620 / 520; }
-  .statcard { width: 46%; padding: var(--space-6); }
-  .statcard b { font-size: 56px; }
-}
+/* ================= Превью менеджерского кейса: схематичный экран в SVG (art.py) ================= */
+/* Та же стеклянная подложка; рисунок 620 × 520 заполняет её целиком. Hover — рисунок поднимается на 6 px. */
+.stage--art { display: block; aspect-ratio: 620 / 520; padding: 0; }
+.stage--art svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform var(--dur-m) var(--ease); }
+.js-motion a.stage--art:hover svg { transform: translateY(-6px); }
 
 /* ================= Hero manager: ряд цифр ================= */
 .hero-metrics { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-divider-soft); max-width: 680px; }
@@ -86,9 +70,12 @@
 /* ================= Заголовок группы в ленте (manager) ================= */
 .group-head { position: relative; z-index: 1; padding-top: var(--space-16); }
 .group-head .eyebrow { margin-bottom: var(--space-2); }
-/* вступление к группе («Как я стал лидом») — текстом колонки чтения под заголовком */
-.group-head__intro { max-width: var(--reader); margin-top: var(--space-4); font-size: 17px; line-height: 1.6; }
-@media (min-width: 1024px) { .group-head__intro { font-size: 18px; } }
+/* заголовок группы («Менеджерские кейсы», «Продуктовые кейсы») — крупнее заголовков кейсов (30 / 40 / 44): 40 / 56 / 64 */
+.group-head__title { font-family: var(--font-display); font-size: 40px; line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; text-wrap: balance; }
+/* вступление к группе («Как я стал лидом») — как текстовая колонка кейса: заголовок кейса, «Ситуация», текст */
+.group-head__intro { max-width: var(--reader); margin-top: var(--space-10); }
+@media (min-width: 768px) { .group-head__title { font-size: 56px; } }
+@media (min-width: 1024px) { .group-head__title { font-size: 64px; } .group-head__intro { margin-top: var(--space-16); } }
 /* первым в ленте стоит слой свечения (div), поэтому не :first-of-type, а «сразу после свечения» */
 .cases__glow + .group-head { padding-top: calc(var(--space-20) + var(--space-2)); }
 .group-head + .case { padding-top: var(--space-10); }
