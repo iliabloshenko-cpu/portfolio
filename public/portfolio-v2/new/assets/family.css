@@ -61,14 +61,7 @@
   .statcard b { font-size: 56px; }
 }
 
-/* ================= Hero manager: команда и ряд цифр ================= */
-.team { margin-top: var(--space-6); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); }
-.team__dots { display: flex; gap: 6px; }
-.team__dots i { width: 22px; height: 22px; border-radius: 50%; background: var(--color-text); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7); }
-.team__dots i.is-mid { background: #8a8a96; }
-.team__dots i.is-jun { background: transparent; box-shadow: inset 0 0 0 2px var(--color-text), 0 0 0 2px rgba(255, 255, 255, 0.7); }
-.team__label { font-size: 15px; line-height: 1.4; font-weight: 600; }
-.team__label span { color: var(--color-text-muted); font-weight: 500; }
+/* ================= Hero manager: ряд цифр ================= */
 .hero-metrics { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-divider-soft); max-width: 680px; }
 .hero-metrics__grid { margin-top: var(--space-4); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5) var(--space-6); }
 .hero-metrics .metric { max-width: none; }
@@ -93,6 +86,9 @@
 /* ================= Заголовок группы в ленте (manager) ================= */
 .group-head { position: relative; z-index: 1; padding-top: var(--space-16); }
 .group-head .eyebrow { margin-bottom: var(--space-2); }
+/* вступление к группе («Как я стал лидом») — текстом колонки чтения под заголовком */
+.group-head__intro { max-width: var(--reader); margin-top: var(--space-4); font-size: 17px; line-height: 1.6; }
+@media (min-width: 1024px) { .group-head__intro { font-size: 18px; } }
 /* первым в ленте стоит слой свечения (div), поэтому не :first-of-type, а «сразу после свечения» */
 .cases__glow + .group-head { padding-top: calc(var(--space-20) + var(--space-2)); }
 .group-head + .case { padding-top: var(--space-10); }
