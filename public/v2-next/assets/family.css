@@ -1,0 +1,193 @@
+/* Новые блоки для /portfolio-v2 (веб-кейсы) и /manager (менеджерские кейсы).
+   Подключается после tokens.css и promo.css: всё, что не описано здесь, работает как в /new. */
+
+:root {
+  /* v2: Omni Support Admin — индиго (тёмная шапка и акценты админки OSA) */
+  --case5-tint: #eef0fb; --case5-strong: #6f7bf7; --case5-deep: #3a43c4; --case5-glow: #dadfff; --case5-ink: #262c7a; --case5-orb: 40%; --case5-metric: #4c55d9;
+  /* v2: CMS-админка — бирюза (между индиго Omni и голубым ПП, чтобы соседние кейсы не сливались) */
+  --case6-tint: #e8f6f6; --case6-strong: #3cb4b4; --case6-deep: #0e7c7c; --case6-glow: #c5eceb; --case6-ink: #0b4f4f; --case6-orb: 42%; --case6-metric: #0e8c8c;
+  /* manager: один спокойный графитово-синий набор на все менеджерские кейсы — группа читается как одно целое,
+     а 4 цветных продуктовых кейса ниже остаются «витриной» */
+  --case7-tint: #eef1f6; --case7-strong: #7c8db0; --case7-deep: #3e5683; --case7-glow: #dde4ef; --case7-ink: #2b3d5f; --case7-orb: 38%; --case7-metric: #3e5683;
+}
+
+/* ================= Окно браузера (веб-экран) ================= */
+/* Скрин админки всегда в «окне»: светлая панель с тремя точками, радиус 14, тонкая кромка. Экран не растягивается,
+   длинный обрезается снизу. Так веб-экраны читаются как веб, а не как картинки, и стоят на одном уровне с телефонами. */
+.window { position: relative; display: block; overflow: hidden; border-radius: 14px; background: var(--color-bg);
+  box-shadow: 0 0 0 1px rgba(17, 17, 20, 0.08), 0 24px 48px -24px rgba(17, 17, 20, 0.18); }
+.window__bar { display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 12px; background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+.window__bar i { width: 8px; height: 8px; border-radius: 50%; background: #d9d9e0; }
+.window img { display: block; width: 100%; height: auto; }
+.window--doc .window__bar { background: var(--color-bg); }
+/* Длинный экран в тексте кейса обрезается снизу (Omni «Состояния поля кода» — 2114 px): целиком он открывается в лайтбоксе */
+.webshot .window img { max-height: 640px; object-fit: cover; object-position: top; }
+
+/* ================= Подложка с веб-экранами (лента на главной) ================= */
+/* Та же стеклянная подложка, что у телефонов. Вместо пары телефонов — пара окон: большое «заднее» уходит за правый
+   край (обрезается стеклом), маленькое «переднее» с деталью сценария лежит поверх слева снизу. */
+.stage--web { display: block; aspect-ratio: 350 / 300; padding: 0; }
+.stage--web .window { position: absolute; transition: transform var(--dur-m) var(--ease); }
+.stage--web .window--back { left: 8%; top: 9%; width: 118%; }
+.stage--web .window--front { left: 5%; bottom: 7%; width: 62%; }
+.js-motion a.stage--web:hover .window--back { transform: translateX(-10px); }
+.js-motion a.stage--web:hover .window--front { transform: translateY(-8px); }
+@media (min-width: 768px) {
+  .stage--web { aspect-ratio: 620 / 520; }
+  .stage--web .window--back { left: 9%; top: 11%; width: 112%; }
+  .stage--web .window--front { left: 5%; bottom: 8%; width: 56%; }
+}
+
+/* ================= Подложка менеджерского кейса: документ + карточка с цифрой ================= */
+.stage--doc { display: block; aspect-ratio: 350 / 320; padding: 0; }
+.stage--doc .window { position: absolute; left: 9%; top: 9%; width: 70%; transition: transform var(--dur-m) var(--ease); }
+.stage--doc .window img { max-height: none; }
+.statcard { position: absolute; right: 6%; bottom: 9%; display: flex; flex-direction: column; gap: var(--space-1); width: 52%;
+  padding: var(--space-5); border-radius: var(--radius-m);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.7));
+  -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: inset 0 0 0 1px var(--glass-edge), 0 24px 48px -24px rgba(17, 17, 20, 0.22);
+  transition: transform var(--dur-m) var(--ease); }
+.statcard b { font-family: var(--font-display); font-size: 40px; line-height: 1; letter-spacing: -0.03em; font-weight: 700; color: var(--case-metric); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.statcard span { font-size: 14px; line-height: 1.35; font-weight: 600; }
+.statcard.statcard--quote b { font-size: 17px; line-height: 1.4; letter-spacing: 0; font-weight: 600; color: var(--color-text); white-space: normal; }
+.statcard.statcard--quote span { font-weight: 500; color: var(--color-text-muted); }
+.js-motion a.stage--doc:hover .statcard { transform: translateY(-8px); }
+.js-motion a.stage--doc:hover .window { transform: translateY(6px); }
+@media (min-width: 768px) {
+  .stage--doc { aspect-ratio: 620 / 520; }
+  .statcard { width: 46%; padding: var(--space-6); }
+  .statcard b { font-size: 56px; }
+}
+
+/* ================= Hero manager: команда и ряд цифр ================= */
+.team { margin-top: var(--space-6); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); }
+.team__dots { display: flex; gap: 6px; }
+.team__dots i { width: 22px; height: 22px; border-radius: 50%; background: var(--color-text); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7); }
+.team__dots i.is-mid { background: #8a8a96; }
+.team__dots i.is-jun { background: transparent; box-shadow: inset 0 0 0 2px var(--color-text), 0 0 0 2px rgba(255, 255, 255, 0.7); }
+.team__label { font-size: 15px; line-height: 1.4; font-weight: 600; }
+.team__label span { color: var(--color-text-muted); font-weight: 500; }
+.hero-metrics { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-divider-soft); max-width: 680px; }
+.hero-metrics__grid { margin-top: var(--space-4); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5) var(--space-6); }
+.hero-metrics .metric { max-width: none; }
+.hero-metrics .metric__value { font-size: 36px; }
+.hero-metrics .metric__label { font-size: 14px; line-height: 1.35; }
+@media (min-width: 768px) {
+  .hero-metrics__grid { grid-template-columns: repeat(4, 1fr); }
+  .hero-metrics .metric__value { font-size: 40px; }
+}
+
+/* ================= Оглавление из двух групп (manager) ================= */
+.index--groups .index__groups { margin-top: var(--space-6); display: grid; grid-template-columns: 1fr; gap: var(--space-10); }
+.index__group-head { display: flex; flex-direction: column; gap: var(--space-1); margin-bottom: var(--space-3); }
+.index__group-head b { font-size: 20px; line-height: 1.3; font-weight: 700; }
+.index__group-head span { font-size: 14px; color: var(--color-text-muted); }
+.index--groups .index__list { margin-top: 0; display: flex; }
+@media (min-width: 1024px) {
+  .index--groups .index__groups { grid-template-columns: 1fr 1fr; gap: var(--space-10); }
+  .index--groups .index__list { display: flex; }
+}
+
+/* ================= Заголовок группы в ленте (manager) ================= */
+.group-head { position: relative; z-index: 1; padding-top: var(--space-16); }
+.group-head .eyebrow { margin-bottom: var(--space-2); }
+/* первым в ленте стоит слой свечения (div), поэтому не :first-of-type, а «сразу после свечения» */
+.cases__glow + .group-head { padding-top: calc(var(--space-20) + var(--space-2)); }
+.group-head + .case { padding-top: var(--space-10); }
+@media (min-width: 1024px) {
+  .group-head { padding-top: var(--space-24); }
+  .cases__glow + .group-head { padding-top: calc(var(--space-24) + var(--space-24) + var(--space-8)); }
+  .group-head + .case { padding-top: var(--space-16); }
+}
+
+/* ================= Масштаб задачи вместо результата в цифрах (B2B без метрик) ================= */
+.metric__base--scope { display: inline-flex; align-self: flex-start; margin-top: var(--space-1); padding: 2px 8px; border-radius: var(--radius-pill);
+  background: rgba(17, 17, 20, 0.06); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text-muted); }
+
+/* ================= Страница веб-кейса ================= */
+/* «Ключевые решения»: карта решения в начале раздела, каждая карточка ведёт к своему подразделу */
+.decisions { display: grid; grid-template-columns: 1fr; gap: var(--space-3); margin: var(--space-6) 0 var(--space-10); counter-reset: d; }
+.decision { display: flex; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-m); background: var(--case-tint);
+  color: var(--color-text); text-decoration: none; transition: background-color var(--dur-s) var(--ease); }
+.decision:hover { background: color-mix(in srgb, var(--case-tint) 60%, white); }
+.decision__n { display: grid; place-items: center; width: 32px; height: 32px; flex: none; border-radius: 50%; background: var(--color-bg);
+  font-size: 15px; font-weight: 700; color: var(--case-metric); font-variant-numeric: tabular-nums; }
+.decision b { display: block; font-size: 17px; line-height: 1.3; font-weight: 700; }
+.decision__t > span { display: block; margin-top: var(--space-1); font-size: 15px; line-height: 1.45; color: var(--color-text-muted); }
+@media (min-width: 768px) { .decisions { grid-template-columns: 1fr 1fr; } }
+
+/* Подраздел решения: жирный заголовок абзаца, текст, ниже — экран */
+.sub { margin-top: var(--space-12); scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+.sub h3 { font-size: 20px; line-height: 1.3; font-weight: 700; margin-bottom: var(--space-3); }
+.sub h3 .decision__n { display: inline-grid; width: 28px; height: 28px; margin-right: var(--space-2); font-size: 14px; vertical-align: 2px; background: var(--case-tint); }
+
+/* Веб-экран в тексте: окно браузера на подложке кейса. На десктопе выходит за колонку текста вправо, до края контейнера:
+   админки читаются только крупно. По клику — лайтбокс (на телефоне картинку там можно листать вбок). */
+.webshot { margin: var(--space-6) 0 0; }
+.webshot__stage { padding: var(--space-4); border-radius: var(--radius-l); background: radial-gradient(120% 120% at 100% 100%, var(--case-glow), transparent 60%), var(--case-tint); }
+.webshot .shot { border-radius: 14px; overflow: hidden; }
+.webshot .shot:hover { transform: translateY(-3px); }
+.webshot figcaption { margin-top: var(--space-3); font-size: 14px; line-height: 1.4; color: var(--color-text-muted); }
+.webshot__zoom { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-2); font-size: 13px; font-weight: 600; color: var(--color-text-muted); }
+@media (min-width: 768px) { .webshot__stage { padding: var(--space-6); } }
+@media (min-width: 1024px) {
+  .webshot { margin-right: calc(-1 * max(0px, min(var(--container), 100vw - 2 * var(--gutter)) - 220px - var(--space-16) - var(--reader))); }
+  .webshot__stage { padding: var(--space-8); }
+  .webshot__zoom { display: none; }
+}
+
+/* Три состояния редактирования — маленькая схема из чипов вместо абзаца */
+.states { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); margin-top: var(--space-5); }
+.state { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 40px; padding: 0 var(--space-4); border-radius: var(--radius-pill);
+  font-size: 15px; font-weight: 600; background: var(--color-surface); color: var(--color-text-muted); }
+.state--edit { background: var(--case-tint); color: var(--case-ink); box-shadow: inset 0 0 0 1.5px var(--case-metric); }
+.state--ok { background: #e7f6ee; color: #0b4a33; }
+.states__arrow { color: var(--color-text-muted); font-size: 18px; line-height: 1; padding-left: var(--space-4); }
+/* текст после схемы — с тем же отступом, что над ней */
+.states + p { margin-top: var(--space-5); }
+@media (min-width: 768px) {
+  .states { flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .states__arrow { padding-left: 0; }
+}
+
+/* ================= Страница менеджерского кейса ================= */
+/* Цитата: крупнее текста, слева линия в цвете кейса */
+.quote { margin: var(--space-6) 0; padding-left: var(--space-5); border-left: 3px solid var(--case-metric); }
+.quote p { font-size: 21px !important; line-height: 1.45 !important; font-weight: 600; }
+.quote p + p { margin-top: var(--space-3); }
+.quote cite { display: block; margin-top: var(--space-3); font-size: 14px; font-style: normal; color: var(--color-text-muted); }
+/* Инсайт: «идея», к которой пришёл, — на подложке кейса, с подписью-капсом */
+.insight { margin: var(--space-6) 0; padding: var(--space-5) var(--space-6); border-radius: var(--radius-m); background: var(--case-tint); }
+.insight__label { display: block; margin-bottom: var(--space-2); font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--case-ink); }
+.insight p { font-size: 17px; line-height: 1.6; }
+/* Процесс по шагам: на телефоне вертикально с линией слева, от 768 — горизонтально */
+.steps { list-style: none; margin: var(--space-6) 0; display: flex; flex-direction: column; gap: 0; counter-reset: s; }
+.steps li { position: relative; padding: 0 0 var(--space-5) 48px; counter-increment: s; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--case-metric); color: var(--color-on-accent); font-size: 15px; font-weight: 700; }
+.steps li::after { content: ""; position: absolute; left: 15px; top: 34px; bottom: 2px; width: 2px; background: var(--case-glow); }
+.steps li:last-child::after { display: none; }
+.steps b { display: block; font-size: 16px; line-height: 1.35; font-weight: 700; }
+.steps span { display: block; margin-top: 2px; font-size: 14px; line-height: 1.45; color: var(--color-text-muted); }
+@media (min-width: 768px) {
+  .steps { flex-direction: row; gap: var(--space-4); }
+  .steps li { flex: 1; padding: 48px 0 0; }
+  .steps li::before { top: 0; }
+  .steps li::after { left: 40px; right: -8px; top: 15px; bottom: auto; width: auto; height: 2px; }
+}
+/* «Было → стало» */
+.shift { display: flex; align-items: baseline; gap: var(--space-2); }
+.shift i { font-style: normal; color: var(--color-text-muted); font-weight: 400; }
+
+/* Лайтбокс для широких веб-экранов на телефоне: картинку можно листать вбок, а не смотреть мелко */
+@media (max-width: 767px) {
+  .lightbox.is-wide { padding-inline: 0; }
+  .lightbox.is-wide figure { max-width: 100%; overflow-x: auto; align-items: flex-start; -webkit-overflow-scrolling: touch; }
+  .lightbox.is-wide img { max-width: none; width: auto; height: min(70vh, 520px); max-height: none; border-radius: 0; }
+  .lightbox.is-wide figcaption { position: sticky; left: 0; padding: 0 var(--space-4); }
+}
+
+/* Лента сразу перед «Контактами» (нет «Ранних проектов», как у manager): у последнего кейса нет нижнего поля —
+   от его кнопки до заголовка «Контакты» столько же, сколько от кнопки Telegram до линии футера (96) */
+.cases--before-contact .case:last-of-type { padding-bottom: 0; }
