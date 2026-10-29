@@ -40,10 +40,10 @@
 }
 
 /* ================= Превью менеджерского кейса: схематичный экран в SVG (art.py) ================= */
-/* Та же стеклянная подложка; рисунок 620 × 520 заполняет её целиком. Hover — рисунок поднимается на 6 px. */
+/* Та же стеклянная подложка; рисунок 620 × 520 заполняет её целиком. */
 .stage--art { display: block; aspect-ratio: 620 / 520; padding: 0; }
-.stage--art svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: transform var(--dur-m) var(--ease); }
-.js-motion a.stage--art:hover svg { transform: translateY(-6px); }
+/* при наведении превью не приподнимается: у него своя анимация (m.8) */
+.stage--art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 /* Анимации превью (вариант R, m.5) — короткие, по смыслу кейса, только при html.js-motion; без движения — финальный кадр */
 /* без движения список стоит на середине («Тестовое задание»): видны строки сверху и снизу, «Оффер» с галочкой внизу */
 .art .art-scroll { transform: translateY(-136px); }
@@ -52,7 +52,9 @@
 .js-motion .art .art-step { animation: art-step 6s var(--ease) infinite; }
 .js-motion .art .art-step-1 { animation-delay: .5s; } .js-motion .art .art-step-2 { animation-delay: 1s; } .js-motion .art .art-step-3 { animation-delay: 1.5s; }
 .js-motion .art .art-scroll { animation: art-scroll 10s var(--ease) infinite; }
-.js-motion .art .art-press { animation: art-press 3.2s var(--ease) infinite; }
+/* «Процессы»: Дизайн → Ревью → Разработка по очереди приподнимаются на 8, по кругу (m.8) */
+.js-motion .art .art-raise { animation: art-raise 4.5s var(--ease) infinite; }
+.js-motion .art .art-raise-1 { animation-delay: 1.5s; } .js-motion .art .art-raise-2 { animation-delay: 3s; }
 .js-motion .art .art-tick { animation: art-tick 7s var(--ease) infinite; }
 .js-motion .art .art-tick-1 { animation-delay: .6s; } .js-motion .art .art-tick-2 { animation-delay: 1.2s; }
 .js-motion .art .art-tick-3 { animation-delay: 1.8s; } .js-motion .art .art-tick-4 { animation-delay: 2.4s; }
@@ -61,7 +63,7 @@
 @keyframes art-step { 0% { opacity: .35; } 12%, 100% { opacity: 1; } }
 @keyframes art-scroll { 0%, 14% { transform: translateY(0); } 20%, 34% { transform: translateY(-68px); } 40%, 54% { transform: translateY(-136px); }
   60%, 74% { transform: translateY(-204px); } 80%, 100% { transform: translateY(-272px); } }
-@keyframes art-press { 0%, 70%, 100% { transform: translateY(0); } 78%, 86% { transform: translateY(3px); } }
+@keyframes art-raise { 0%, 33%, 100% { transform: translateY(0); } 7%, 26% { transform: translateY(-8px); } }
 @keyframes art-tick { 0%, 8% { opacity: 0; } 14%, 100% { opacity: 1; } }
 
 /* ================= Hero manager: ряд цифр ================= */
