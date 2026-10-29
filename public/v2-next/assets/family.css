@@ -20,6 +20,9 @@
 .window--doc .window__bar { background: var(--color-bg); }
 /* Длинный экран в тексте кейса обрезается снизу (Omni «Состояния поля кода» — 2114 px): целиком он открывается в лайтбоксе */
 .webshot .window img { max-height: 640px; object-fit: cover; object-position: top; }
+/* Плашка из кадра Figma (Omni-4, Omni-5): на белом поле окна, скругление как у самого окна — 14 */
+.window--inset img, .webshot .window--inset img { width: calc(100% - 2 * var(--space-2)); margin: var(--space-2); border-radius: 14px; }
+@media (min-width: 768px) { .window--inset img, .webshot .window--inset img { width: calc(100% - 2 * var(--space-3)); margin: var(--space-3); } }
 
 /* ================= Подложка с веб-экранами (лента на главной) ================= */
 /* Та же стеклянная подложка, что у телефонов. Вместо пары телефонов — пара окон: большое «заднее» уходит за правый
@@ -98,10 +101,6 @@
   .cases__glow + .group-head { padding-top: calc(var(--space-24) + var(--space-24) + var(--space-8)); }
   .group-head + .case { padding-top: var(--space-16); }
 }
-
-/* ================= Масштаб задачи вместо результата в цифрах (B2B без метрик) ================= */
-.metric__base--scope { display: inline-flex; align-self: flex-start; margin-top: var(--space-1); padding: 2px 8px; border-radius: var(--radius-pill);
-  background: rgba(17, 17, 20, 0.06); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text-muted); }
 
 /* ================= Страница веб-кейса ================= */
 /* Номер подраздела решения — в круге цвета кейса */
